@@ -1,7 +1,9 @@
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
+
 }
 
 body{
@@ -20,7 +22,11 @@ body{
 
 }
 
-#gameContainer{
+#app{
+
+    width:100%;
+
+    max-width:960px;
 
     display:flex;
 
@@ -28,29 +34,43 @@ body{
 
     align-items:center;
 
+    padding:12px;
+
 }
 
-canvas{
+/* ---------------- */
+/* Canvas */
+/* ---------------- */
+
+#gameCanvas{
+
+    width:100%;
+
+    aspect-ratio:30/17;
 
     border:3px solid white;
+
+    background:#7fc97f;
 
     image-rendering:pixelated;
 
 }
 
-/* 모바일 버튼 */
+/* ---------------- */
+/* 모바일 UI */
+/* ---------------- */
 
-#mobileControls{
+#mobileUI{
 
     width:100%;
+
+    margin-top:16px;
 
     display:none;
 
     justify-content:space-between;
 
     align-items:flex-end;
-
-    margin-top:20px;
 
 }
 
@@ -70,45 +90,43 @@ canvas{
 
     display:flex;
 
-    gap:50px;
+    gap:64px;
 
 }
 
-#actionButtons{
+#actions{
 
     display:flex;
 
     flex-direction:column;
 
-    gap:20px;
+    gap:18px;
 
 }
 
-#mobileControls button{
+#mobileUI button{
 
     width:64px;
 
     height:64px;
 
-    font-size:28px;
-
     border:none;
 
-    border-radius:16px;
+    border-radius:14px;
 
     background:#444;
 
     color:white;
 
-    user-select:none;
+    font-size:28px;
 
 }
 
-/* 터치 가능한 기기에서만 표시 */
+/* 터치 가능한 기기 */
 
 @media (hover:none){
 
-    #mobileControls{
+    #mobileUI{
 
         display:flex;
 
