@@ -1,16 +1,54 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>메뚝고등학교 v2.n</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>메뚝고등학교 v2.1</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
+
+<div id="gameContainer">
 
     <canvas id="game"></canvas>
 
-    <script type="module" src="js/game.js"></script>
+    <!-- 모바일 컨트롤 -->
+
+    <div id="mobileControls">
+
+        <div id="dpad">
+
+            <button id="up">▲</button>
+
+            <div class="middle">
+
+                <button id="left">◀</button>
+                <button id="right">▶</button>
+
+            </div>
+
+            <button id="down">▼</button>
+
+        </div>
+
+        <div id="actionButtons">
+
+            <button id="buttonA">A</button>
+            <button id="buttonB">B</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="module" src="js/game.js"></script>
 
 </body>
 </html>
