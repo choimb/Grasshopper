@@ -5,13 +5,29 @@
 }
 
 body{
+
     background:#1b1b1b;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
-    height:100vh;
+    min-height:100vh;
+
+    font-family:sans-serif;
+
+}
+
+#gameContainer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
 }
 
 canvas{
@@ -19,5 +35,83 @@ canvas{
     border:3px solid white;
 
     image-rendering:pixelated;
+
+}
+
+/* 모바일 버튼 */
+
+#mobileControls{
+
+    width:100%;
+
+    display:none;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    margin-top:20px;
+
+}
+
+#dpad{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+.middle{
+
+    display:flex;
+
+    gap:50px;
+
+}
+
+#actionButtons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+#mobileControls button{
+
+    width:64px;
+
+    height:64px;
+
+    font-size:28px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#444;
+
+    color:white;
+
+    user-select:none;
+
+}
+
+/* 터치 가능한 기기에서만 표시 */
+
+@media (hover:none){
+
+    #mobileControls{
+
+        display:flex;
+
+    }
 
 }
