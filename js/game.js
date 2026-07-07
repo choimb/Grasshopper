@@ -1,63 +1,139 @@
-// Canvas 가져오기
+// Canvas
+
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-// 게임 화면 크기
 canvas.width = 960;
 canvas.height = 540;
 
-// 플레이어 정보
+// 플레이어
+
 const player = {
-    x: 100,
-    y: 100,
-    width: 32,
-    height: 32,
-    speed: 3
+
+    x:100,
+    y:100,
+
+    width:32,
+    height:32,
+
+    speed:3
+
 };
 
-// 현재 눌린 키를 저장할 객체
+// 입력 상태
+
 const keys = {};
 
-// 키를 누르면 true
-window.addEventListener("keydown", (e) => {
-    keys[e.key] = true;
+// 키보드 입력
+
+window.addEventListener("keydown",(e)=>{
+
+    keys[e.code]=true;
+
 });
 
-// 키를 떼면 false
-window.addEventListener("keyup", (e) => {
-    keys[e.key] = false;
+window.addEventListener("keyup",(e)=>{
+
+    keys[e.code]=false;
+
 });
 
-// 플레이어 이동 계산
-function update() {
+// 모바일 버튼 연결
 
-    if (keys["ArrowUp"]) {
-        player.y -= player.speed;
+function bindButton(id,key){
+
+    const button=document.getElementById(id);
+
+    button.addEventListener("touchstart",(e)=>{
+
+        e.preventDefault();
+
+        keys[key]=true;
+
+    });
+
+    button.addEventListener("touchend",(e)=>{
+
+        e.preventDefault();
+
+        keys[key]=false;
+
+    });
+
+}
+
+bindButton("up","ArrowUp");
+bindButton("down","ArrowDown");
+bindButton("left","ArrowLeft");
+bindButton("right","ArrowRight");
+
+bindButton("buttonA","KeyZ");
+bindButton("buttonB","KeyX");
+
+// 업데이트
+
+function update(){
+
+    if(keys["ArrowUp"]){
+
+        player.y-=player.speed;
+
     }
 
-    if (keys["ArrowDown"]) {
-        player.y += player.speed;
+    if(keys["ArrowDown"]){
+
+        player.y+=player.speed;
+
     }
 
-    if (keys["ArrowLeft"]) {
-        player.x -= player.speed;
+    if(keys["ArrowLeft"]){
+
+        player.x-=player.speed;
+
     }
 
-    if (keys["ArrowRight"]) {
-        player.x += player.speed;
+    if(keys["ArrowRight"]){
+
+        player.x+=player.speed;
+
+    }
+
+    // 맵 밖으로 못 나가기
+
+    if(player.x<0){
+
+        player.x=0;
+
+    }
+
+    if(player.y<0){
+
+        player.y=0;
+
+    }
+
+    if(player.x>canvas.width-player.width){
+
+        player.x=canvas.width-player.width;
+
+    }
+
+    if(player.y>canvas.height-player.height){
+
+        player.y=canvas.height-player.height;
+
     }
 
 }
 
-// 화면 그리기
-function draw() {
+// 그리기
 
-    // 배경
-    ctx.fillStyle = "#7fc97f";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+function draw(){
 
-    // 플레이어
-    ctx.fillStyle = "red";
+    ctx.fillStyle="#7fc97f";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="red";
     ctx.fillRect(
         player.x,
         player.y,
@@ -67,15 +143,16 @@ function draw() {
 
 }
 
-// 게임 반복
-function gameLoop() {
+// 게임 루프
+
+function gameLoop(){
 
     update();
+
     draw();
 
     requestAnimationFrame(gameLoop);
 
 }
 
-// 게임 시작
 gameLoop();
