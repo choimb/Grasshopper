@@ -1,26 +1,28 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>메뚝고등학교 v2.1</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+<title>Project Grasshopper</title>
+
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<div id="gameContainer">
+<div id="app">
 
-    <canvas id="game"></canvas>
+    <canvas id="gameCanvas"></canvas>
 
-    <!-- 모바일 컨트롤 -->
-
-    <div id="mobileControls">
+    <div id="mobileUI">
 
         <div id="dpad">
 
@@ -37,9 +39,10 @@
 
         </div>
 
-        <div id="actionButtons">
+        <div id="actions">
 
             <button id="buttonA">A</button>
+
             <button id="buttonB">B</button>
 
         </div>
@@ -48,7 +51,8 @@
 
 </div>
 
-<script type="module" src="js/game.js"></script>
+<script type="module" src="js/main.js"></script>
 
 </body>
+
 </html>
