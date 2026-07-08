@@ -52,7 +52,8 @@ body{
 
     background:#7fc97f;
 
-    image-rendering:pixelated;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 
 }
 
