@@ -180,8 +180,8 @@ const bubbleWidth = textWidth + padding * 2;
     // 테두리
     // -----------------
 
-    ctx.strokeStyle = "#9FC93C";
-    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#444";
+    ctx.lineWidth = 1;
 
     ctx.stroke();
 
