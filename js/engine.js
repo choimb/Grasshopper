@@ -28,27 +28,24 @@ import {
 
 export function startEngine(canvas, ctx){
 
-    if(isKeyPressed("KeyZ")){
+    function update(){
+        updatePlayer(canvas);
+        updateNPC(player);
 
-    if(dialogue.isOpen){
-
-        nextDialogue();
-
+        if(isKeyPressed("KeyZ")){
+            if(dialogue.isOpen){
+                nextDialogue();
+            }
+            else if(npc.canInteract){
+                openDialogue(npc);
+        }
     }
-    else if(npc.canInteract){
-
-        openDialogue(npc);
-
-    }
-
 }
 
     function draw(){
 
         // 배경
-
         ctx.fillStyle="#7fc97f";
-
         ctx.fillRect(
             0,
             0,
@@ -57,24 +54,17 @@ export function startEngine(canvas, ctx){
         );
 
         drawNPC(ctx);
-
         drawInteraction(ctx, player);
 
         // 플레이어
-
         drawPlayer(ctx);
         drawDialogue(ctx, canvas);
-
     }
 
     function gameLoop(){
-
         update();
-
         draw();
-
         requestAnimationFrame(gameLoop);
-
     }
 
     gameLoop();
