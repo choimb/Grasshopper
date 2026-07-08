@@ -12,6 +12,9 @@ export const player = {
     width:32,
     height:32,
 
+    spriteWidth:64,
+    spriteHeight:64,
+
     speed:3,
 
     direction:"down",
@@ -81,8 +84,8 @@ export function drawPlayer(ctx){
         player.x,
         player.y,
 
-        player.width,
-        player.height
+        player.spriteWidth,
+        player.spriteHeight
     );
 
 }
