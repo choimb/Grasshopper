@@ -19,7 +19,7 @@ export const npc = {
 
     frame:1,
 
-    detectDistance:160,
+    detectDistance:130,
 
     interactionText:"대화하기",
 
