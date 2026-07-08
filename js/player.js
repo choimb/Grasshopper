@@ -21,6 +21,8 @@ export const player = {
 
     frame:1,
 
+    animationTimer:0,
+
     image:new Image()
 
 };
@@ -29,10 +31,13 @@ player.image.src = "assets/characters/player.png";
 
 export function updatePlayer(canvas){
 
+    let moving = false;
+
     if(keys["ArrowUp"]){
 
         player.y-=player.speed;
         player.direction="up";
+        moving = true;
 
     }
 
@@ -40,6 +45,7 @@ export function updatePlayer(canvas){
 
         player.y+=player.speed;
         player.direction="down";
+        moving = true;
 
     }
 
@@ -47,6 +53,7 @@ export function updatePlayer(canvas){
 
         player.x-=player.speed;
         player.direction="left";
+        moving = true;
 
     }
 
@@ -54,8 +61,34 @@ export function updatePlayer(canvas){
 
         player.x+=player.speed;
         player.direction="right";
+        moving = true;
 
     }
+
+if(moving){
+
+    player.animationTimer++;
+
+    if(player.animationTimer >= 12){
+
+        player.animationTimer = 0;
+
+        player.frame++;
+
+        if(player.frame > 2){
+
+            player.frame = 0;
+
+        }
+
+    }
+
+}else{
+
+    player.frame = 1;
+    player.animationTimer = 0;
+
+}
 
     // 맵 밖으로 못 나가기
 
