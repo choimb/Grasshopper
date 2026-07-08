@@ -18,26 +18,30 @@ import {
 import {
     dialogue,
     drawDialogue,
-    openDialogue
+    openDialogue,
+    nextDialogue
 } from "./dialogue.js";
 
-import { keys } from "./input.js";
+import {
+    isKeyPressed
+} from "./input.js";
 
 export function startEngine(canvas, ctx){
 
-    function update(){
+    if(isKeyPressed("KeyZ")){
 
-        updatePlayer(canvas);
-        updateNPC(player);
-        if(
-            npc.canInteract &&
-            keys["KeyZ"] &&
-            !dialogue.isOpen
-        ){
-            openDialogue(npc);
-        }
+    if(dialogue.isOpen){
+
+        nextDialogue();
 
     }
+    else if(npc.canInteract){
+
+        openDialogue(npc);
+
+    }
+
+}
 
     function draw(){
 

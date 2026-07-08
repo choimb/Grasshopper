@@ -64,3 +64,11 @@ touchButtons.forEach(([id, key]) => {
     button.addEventListener("touchcancel", release);
 
 });
+
+export function isKeyPressed(key){
+    if(keys[key]){
+        keys[key] = false;
+        return true;
+    }
+    return false;
+}

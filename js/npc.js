@@ -2,6 +2,8 @@
 // NPC
 // =====================================
 
+import { dialogue } from "./dialogue.js";
+
 export const npc = {
 
     x:500,
@@ -135,6 +137,8 @@ export function drawNPC(ctx){
 }
 
 export function drawInteraction(ctx, player){
+
+    if(dialogue.isOpen) return;
 
     const dx = player.x - npc.x;
     const dy = player.y - npc.y;

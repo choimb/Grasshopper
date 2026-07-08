@@ -2,6 +2,7 @@
 // Player
 // =====================================
 
+import { dialogue } from "./dialogue.js";
 import { keys } from "./input.js";
 
 export const player = {
@@ -31,6 +32,8 @@ export const player = {
 player.image.src = "assets/characters/player.png";
 
 export function updatePlayer(canvas){
+
+    if(dialogue.isOpen) return;
 
     let moving = false;
 
