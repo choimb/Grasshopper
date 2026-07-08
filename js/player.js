@@ -69,21 +69,17 @@ export function updatePlayer(canvas){
 export function drawPlayer(ctx){
 
     ctx.drawImage(
-
         player.image,
 
-        32, // 원본 이미지 x
-        0,  // 원본 이미지 y
-
-        32, // 잘라올 너비
-        32, // 잘라올 높이
+        32,
+        0,
+        32,
+        32,
 
         player.x,
         player.y,
-
         player.width,
         player.height
-
     );
 
 }
