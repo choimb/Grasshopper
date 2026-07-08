@@ -68,6 +68,8 @@ export function updatePlayer(canvas){
 
 export function drawPlayer(ctx){
 
+    console.log("drawPlayer 실행");
+
     ctx.drawImage(
         player.image,
 
@@ -78,6 +80,7 @@ export function drawPlayer(ctx){
 
         player.x,
         player.y,
+
         player.width,
         player.height
     );
