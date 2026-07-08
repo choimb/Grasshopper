@@ -10,7 +10,8 @@ import {
 
 import {
     drawNPC,
-    updateNPC
+    updateNPC,
+    drawInteraction
 } from "./npc.js";
 
 export function startEngine(canvas, ctx){
@@ -36,6 +37,8 @@ export function startEngine(canvas, ctx){
         );
 
         drawNPC(ctx);
+
+        drawInteraction(ctx, player);
 
         // 플레이어
 

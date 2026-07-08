@@ -10,8 +10,8 @@ export const npc = {
     width:32,
     height:32,
 
-    spriteWidth:96,
-    spriteHeight:96,
+    spriteWidth:80,
+    spriteHeight:80,
 
     direction:"down",
 
@@ -114,4 +114,78 @@ export function drawNPC(ctx){
 
     );
 
+}
+
+export function drawInteraction(ctx, player){
+
+    const dx = player.x - npc.x;
+    const dy = player.y - npc.y;
+
+    const distance = Math.sqrt(dx*dx + dy*dy);
+
+    if(distance > npc.detectDistance) return;
+
+    // -----------------
+    // 말풍선 위치
+    // -----------------
+
+    const x = npc.x + npc.spriteWidth / 2;
+    const y = npc.y - 40;
+
+    // -----------------
+    // 말풍선
+    // -----------------
+
+    ctx.fillStyle = "#fffdf4";
+
+    ctx.beginPath();
+
+    ctx.roundRect(
+        x - 55,
+        y - 40,
+        110,
+        45,
+        10
+    );
+
+    ctx.fill();
+
+    // -----------------
+    // 꼬리
+    // -----------------
+
+    ctx.beginPath();
+
+    ctx.moveTo(x - 8, y + 5);
+    ctx.lineTo(x + 8, y + 5);
+    ctx.lineTo(x, y + 14);
+
+    ctx.closePath();
+
+    ctx.fill();
+
+    // -----------------
+    // 테두리
+    // -----------------
+
+    ctx.strokeStyle = "#444";
+    ctx.lineWidth = 2;
+
+    ctx.stroke();
+
+    // -----------------
+    // 글씨
+    // -----------------
+
+    ctx.fillStyle = "#222";
+
+    ctx.textAlign = "center";
+
+    ctx.font = "bold 14px sans-serif";
+
+    ctx.fillText("[ Z ]", x, y - 18);
+
+    ctx.font = "13px sans-serif";
+
+    ctx.fillText("대화하기", x, y);
 }
