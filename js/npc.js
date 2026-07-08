@@ -19,6 +19,18 @@ export const npc = {
 
     detectDistance:160,
 
+    interactionText:"대화하기",
+
+    name:"디지털빵",
+
+    dialogue:[
+        "안녕!",
+        "나는 디지털빵이야.",
+        "빵 먹을래?"
+    ],
+
+    canInteract:false,
+
     image:new Image()
 
 };
@@ -33,10 +45,16 @@ export function updateNPC(player){
     const distance = Math.sqrt(dx * dx + dy * dy);
 
     if(distance > npc.detectDistance){
-
     npc.direction = "down";
+    npc.canInteract = false;
     return;
+}
 
+    if(distance <= npc.detectDistance){
+    npc.canInteract = true;
+    }
+    else{
+    npc.canInteract = false;
     }
 
     if(Math.abs(dx) > Math.abs(dy)){
@@ -125,7 +143,7 @@ export function drawInteraction(ctx, player){
 
     if(distance > npc.detectDistance) return;
 
-    const actionText = "대화하기";
+    const actionText = npc.interactionText;
 
     // -----------------
     // 말풍선 위치

@@ -9,10 +9,19 @@ import {
 } from "./player.js";
 
 import {
+    npc,
     drawNPC,
     updateNPC,
     drawInteraction
 } from "./npc.js";
+
+import {
+    dialogue,
+    drawDialogue,
+    openDialogue
+} from "./dialogue.js";
+
+import { keys } from "./input.js";
 
 export function startEngine(canvas, ctx){
 
@@ -20,6 +29,13 @@ export function startEngine(canvas, ctx){
 
         updatePlayer(canvas);
         updateNPC(player);
+        if(
+            npc.canInteract &&
+            keys["KeyZ"] &&
+            !dialogue.isOpen
+        ){
+            openDialogue(npc);
+        }
 
     }
 
@@ -43,6 +59,7 @@ export function startEngine(canvas, ctx){
         // 플레이어
 
         drawPlayer(ctx);
+        drawDialogue(ctx, canvas);
 
     }
 
