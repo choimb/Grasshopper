@@ -22,6 +22,7 @@ export const player = {
     frame:1,
 
     animationTimer:0,
+    animationDirection:1,
 
     image:new Image()
 
@@ -73,11 +74,19 @@ if(moving){
 
         player.animationTimer = 0;
 
-        player.frame++;
+        player.frame += player.animationDirection;
 
-        if(player.frame > 2){
+        if(player.frame >= 2){
+
+            player.frame = 2;
+            player.animationDirection = -1;
+
+        }
+
+        if(player.frame <= 0){
 
             player.frame = 0;
+            player.animationDirection = 1;
 
         }
 
@@ -87,6 +96,7 @@ if(moving){
 
     player.frame = 1;
     player.animationTimer = 0;
+    player.animationDirection = 1;
 
 }
 
