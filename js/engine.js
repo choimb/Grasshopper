@@ -8,6 +8,8 @@ import {
     drawPlayer
 } from "./player.js";
 
+import { drawNPC } from "./npc.js";
+
 export function startEngine(canvas, ctx){
 
     function update(){
@@ -28,6 +30,8 @@ export function startEngine(canvas, ctx){
             canvas.width,
             canvas.height
         );
+
+        drawNPC(ctx);
 
         // 플레이어
 
