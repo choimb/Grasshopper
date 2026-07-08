@@ -125,12 +125,14 @@ export function drawInteraction(ctx, player){
 
     if(distance > npc.detectDistance) return;
 
+    const actionText = "대화하기";
+
     // -----------------
     // 말풍선 위치
     // -----------------
 
     const x = npc.x + npc.spriteWidth / 2;
-    const y = npc.y - 40;
+    const y = npc.y - 15;
 
     // -----------------
     // 말풍선
@@ -140,10 +142,20 @@ export function drawInteraction(ctx, player){
 
     ctx.beginPath();
 
+    const padding = 18;
+
+    ctx.font = "bold 14px sans-serif";
+
+    const textWidth = Math.max(
+    ctx.measureText("[ Z ]").width,
+    ctx.measureText(actionText).width
+    );
+
+const bubbleWidth = textWidth + padding * 2;
     ctx.roundRect(
-        x - 55,
+        x - bubbleWidth / 2,
         y - 40,
-        110,
+        bubbleWidth,
         45,
         10
     );
@@ -168,7 +180,7 @@ export function drawInteraction(ctx, player){
     // 테두리
     // -----------------
 
-    ctx.strokeStyle = "#444";
+    ctx.strokeStyle = "#9FC93C";
     ctx.lineWidth = 2;
 
     ctx.stroke();
@@ -187,5 +199,5 @@ export function drawInteraction(ctx, player){
 
     ctx.font = "13px sans-serif";
 
-    ctx.fillText("대화하기", x, y);
+    ctx.fillText(actionText, x, y);
 }
