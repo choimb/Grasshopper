@@ -11,6 +11,8 @@ const canvas = document.getElementById("gameCanvas");
 
 const ctx = canvas.getContext("2d");
 
+ctx.imageSmoothingEnabled = false;
+
 // 게임 내부 해상도
 
 canvas.width = 960;
