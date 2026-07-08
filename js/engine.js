@@ -8,13 +8,17 @@ import {
     drawPlayer
 } from "./player.js";
 
-import { drawNPC } from "./npc.js";
+import {
+    drawNPC,
+    updateNPC
+} from "./npc.js";
 
 export function startEngine(canvas, ctx){
 
     function update(){
 
         updatePlayer(canvas);
+        updateNPC(player);
 
     }
 
