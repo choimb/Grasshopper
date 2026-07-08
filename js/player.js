@@ -84,8 +84,8 @@ export function drawPlayer(ctx){
         player.x,
         player.y,
 
-        player.spriteWidth,
-        player.spriteHeight
+        160,
+        160
     );
 
 }
