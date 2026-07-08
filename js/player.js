@@ -14,9 +14,13 @@ export const player = {
 
     speed:3,
 
-    direction:"down"
+    direction:"down",
+
+    image:new Image()
 
 };
+
+player.image.src = "assets/characters/player.png";
 
 export function updatePlayer(canvas){
 
@@ -58,6 +62,22 @@ export function updatePlayer(canvas){
     player.y = Math.max(
         0,
         Math.min(player.y, canvas.height-player.height)
+    );
+
+}
+
+export function drawPlayer(ctx){
+
+    ctx.drawImage(
+
+        player.image,
+
+        player.x,
+        player.y,
+
+        player.width,
+        player.height
+
     );
 
 }

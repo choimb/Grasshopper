@@ -2,7 +2,11 @@
 // Engine
 // =====================================
 
-import { player, updatePlayer } from "./player.js";
+import {
+    player,
+    updatePlayer,
+    drawPlayer
+} from "./player.js";
 
 export function startEngine(canvas, ctx){
 
@@ -27,17 +31,7 @@ export function startEngine(canvas, ctx){
 
         // 플레이어
 
-        ctx.fillStyle="red";
-
-        ctx.fillRect(
-
-            player.x,
-            player.y,
-
-            player.width,
-            player.height
-
-        );
+        drawPlayer(ctx);
 
     }
 
