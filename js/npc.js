@@ -10,8 +10,8 @@ export const npc = {
     width:32,
     height:32,
 
-    spriteWidth:96,
-    spriteHeight:96,
+    spriteWidth:80,
+    spriteHeight:80,
 
     direction:"down",
 
