@@ -12,8 +12,8 @@ export const player = {
     width:32,
     height:32,
 
-    spriteWidth:64,
-    spriteHeight:64,
+    spriteWidth:80,
+    spriteHeight:80,
 
     speed:3,
 
