@@ -12,12 +12,14 @@ export const player = {
     width:32,
     height:32,
 
-    spriteWidth:96,
-    spriteHeight:96,
+    spriteWidth:80,
+    spriteHeight:80,
 
     speed:3,
 
     direction:"down",
+
+    frame:1,
 
     image:new Image()
 
@@ -71,15 +73,39 @@ export function updatePlayer(canvas){
 
 export function drawPlayer(ctx){
 
-    console.log("drawPlayer 실행");
+    const FRAME_SIZE = 32;
+    let row = 0;
+
+    switch(player.direction){
+
+    case "down":
+        row = 0;
+        break;
+
+    case "left":
+        row = 1;
+        break;
+
+    case "right":
+        row = 2;
+        break;
+
+    case "up":
+        row = 3;
+        break;
+
+    }
+
+    const sx = player.frame * FRAME_SIZE;
+    const sy = row * FRAME_SIZE;
 
     ctx.drawImage(
         player.image,
 
-        32,
-        0,
-        32,
-        32,
+        sx,
+        sy,
+        FRAME_SIZE,
+        FRAME_SIZE,
 
         player.x,
         player.y,
