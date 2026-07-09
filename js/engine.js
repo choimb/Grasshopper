@@ -22,13 +22,9 @@ import {
     nextDialogue
 } from "./dialogue.js";
 
-import {
-    isKeyPressed
-} from "./input.js";
-
-import {
-    drawMap
-} from "./map.js";
+import {isKeyPressed} from "./input.js";
+import {drawMap} from "./map.js";
+import {drawObjects} from "./objects.js";
 
 export function startEngine(canvas, ctx){
 
@@ -50,6 +46,9 @@ export function startEngine(canvas, ctx){
 
         // 배경
         drawMap(ctx);
+
+        // 오브젝트
+        drawObjects(ctx);
 
         // NPC
         drawNPC(ctx);
