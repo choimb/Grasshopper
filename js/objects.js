@@ -5,7 +5,7 @@
 const deskLeft = new Image();
 deskLeft.src = "assets/objects/desk_left.png";
 const OBJECT_SCALE = 64;
-const DESK_COLLISION_HEIGHT = 20;
+const DESK_COLLISION_HEIGHT = 40;
 const DESK_COLLISION_Y = OBJECT_SCALE - DESK_COLLISION_HEIGHT;
 
 export const objects = [
