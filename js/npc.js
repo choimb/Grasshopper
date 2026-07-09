@@ -220,7 +220,7 @@ const bubbleWidth = textWidth + padding * 2;
 export function getNPCEntity(){
 
     return{
-        sortY: npc.y + npc.collision.y + npc.collision.height;
+        sortY: npc.y + npc.collision.y + npc.collision.height,
         draw(ctx){
             drawNPC(ctx);
         }
