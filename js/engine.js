@@ -25,6 +25,7 @@ import {
 import {isKeyPressed} from "./input.js";
 import {drawMap} from "./map.js";
 import {drawObjects} from "./objects.js";
+import {drawCollision} from "./collision.js";
 
 export function startEngine(canvas, ctx){
 
