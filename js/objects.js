@@ -21,6 +21,7 @@ export const objects = [
             y: DESK_COLLISION_Y,
             width: OBJECT_SCALE,
             height: DESK_COLLISION_HEIGHT
+        }
     }
 ];
 
