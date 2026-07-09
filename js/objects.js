@@ -21,12 +21,11 @@ export const objects = [
             y: DESK_COLLISION_Y,
             width: OBJECT_SCALE,
             height: DESK_COLLISION_HEIGHT
-        }
+            }
     }
 ];
 
 export function drawObjects(ctx){
-
     for(const object of objects){
         object.sortY =
             object.y +
@@ -44,5 +43,21 @@ export function drawObjects(ctx){
             object.height
         );
     }
+}
 
+export function getObjectEntities(){
+    return objects.map(object=>({
+        sortY: object.sortY,
+        draw(ctx){
+
+            ctx.drawImage(
+                object.image,
+                object.x,
+                object.y,
+                object.width,
+                object.height
+
+            );
+        }
+    }));
 }

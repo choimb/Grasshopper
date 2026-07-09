@@ -146,3 +146,12 @@ export function drawPlayer(ctx){
     );
 
 }
+
+export function getPlayerEntity(){
+    return{
+        sortY: player.sortY,
+        draw(ctx){
+            drawPlayer(ctx);
+        }
+    };
+}

@@ -5,7 +5,8 @@
 import {
     player,
     updatePlayer,
-    drawPlayer
+    drawPlayer,
+    getPlayerEntity
 } from "./player.js";
 
 import {
@@ -24,8 +25,11 @@ import {
 
 import {isKeyPressed} from "./input.js";
 import {drawMap} from "./map.js";
-import {drawObjects} from "./objects.js";
+import {getObjectEntities} from "./objects.js";
 import {drawCollision} from "./collision.js";
+import { drawRenderQueue } from "./renderer.js";
+
+import { getNPCEntity } from "./npc.js";
 
 export function startEngine(canvas, ctx){
 
@@ -48,16 +52,16 @@ export function startEngine(canvas, ctx){
         // 배경
         drawMap(ctx);
 
-        // 오브젝트
-        drawObjects(ctx);
+        const renderQueue = [
+            ...getObjectEntities(),
+            getNPCEntity(),
+            getPlayerEntity()
+        ];
+        drawRenderQueue(ctx, renderQueue);
+
+        // 개발용
         drawCollision(ctx);
-
-        // NPC
-        drawNPC(ctx);
         drawInteraction(ctx, player);
-
-        // 플레이어
-        drawPlayer(ctx);
         drawDialogue(ctx, canvas);
     }
 

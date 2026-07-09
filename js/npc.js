@@ -216,3 +216,13 @@ const bubbleWidth = textWidth + padding * 2;
 
     ctx.fillText(actionText, x, y);
 }
+
+export function getNPCEntity(){
+
+    return{
+        sortY: npc.y + npc.collision.y + npc.collision.height;
+        draw(ctx){
+            drawNPC(ctx);
+        }
+    };
+}
