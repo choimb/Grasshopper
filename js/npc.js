@@ -5,24 +5,18 @@
 import { dialogue } from "./dialogue.js";
 
 export const npc = {
-
     x:500,
     y:220,
-
     width:32,
     height:32,
 
-    spriteWidth:80,
-    spriteHeight:80,
+    spriteWidth:64,
+    spriteHeight:64,
 
     direction:"down",
-
     frame:1,
-
-    detectDistance:130,
-
+    detectDistance:160,
     interactionText:"대화하기",
-
     name:"디지털빵",
 
     dialogue:[
@@ -32,7 +26,6 @@ export const npc = {
     ],
 
     canInteract:false,
-
     image:new Image()
 
 };

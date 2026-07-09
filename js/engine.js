@@ -49,6 +49,7 @@ export function startEngine(canvas, ctx){
 
         // 오브젝트
         drawObjects(ctx);
+        drawCollision(ctx);
 
         // NPC
         drawNPC(ctx);

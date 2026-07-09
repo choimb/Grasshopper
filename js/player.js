@@ -4,6 +4,7 @@
 
 import { dialogue } from "./dialogue.js";
 import { keys } from "./input.js";
+import { checkObjectCollision } from "./collision.js";
 
 export const player = {
     x:100,
@@ -14,6 +15,13 @@ export const player = {
 
     spriteWidth:64,
     spriteHeight:64,
+
+    collision:{
+        x:16,
+        y:44,
+        width:32,
+        height:20
+    },
 
     speed:3,
     direction:"down",
@@ -30,29 +38,36 @@ player.image.src = "assets/characters/player.png";
 export function updatePlayer(canvas){
     if(dialogue.isOpen) return;
     let moving = false;
+    let nextX = player.x;
+    let nextY = player.y;
 
     if(keys["ArrowUp"]){
-        player.y-=player.speed;
+        nextY -= player.speed;
         player.direction="up";
         moving = true;
     }
 
     if(keys["ArrowDown"]){
-        player.y+=player.speed;
+        nextY += player.speed;
         player.direction="down";
         moving = true;
     }
 
     if(keys["ArrowLeft"]){
-        player.x-=player.speed;
+        nextX -= player.speed;
         player.direction="left";
         moving = true;
     }
 
     if(keys["ArrowRight"]){
-        player.x+=player.speed;
+        nextX += player.speed;
         player.direction="right";
         moving = true;
+    }
+
+    if(!checkObjectCollision(nextX, nextY, player)){
+        player.x = nextX;
+        player.y = nextY;
     }
 
     if(moving){
@@ -88,7 +103,8 @@ export function updatePlayer(canvas){
         Math.min(player.y, canvas.height-player.height)
     );
 
-    player.sortY = player.y + player.spriteHeight;
+    player.sortY =
+        player.y + player.collision.y + player.collision.height;
 }
 
 export function drawPlayer(ctx){
