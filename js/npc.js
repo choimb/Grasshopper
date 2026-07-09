@@ -13,6 +13,13 @@ export const npc = {
     spriteWidth:64,
     spriteHeight:64,
 
+    collision:{
+        x:16,
+        y:44,
+        width:32,
+        height:20
+},
+
     direction:"down",
     frame:1,
     detectDistance:160,
