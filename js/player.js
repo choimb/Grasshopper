@@ -6,105 +6,78 @@ import { dialogue } from "./dialogue.js";
 import { keys } from "./input.js";
 
 export const player = {
-
     x:100,
     y:100,
-
     width:32,
     height:32,
+    sortY: 0,
 
-    spriteWidth:80,
-    spriteHeight:80,
+    spriteWidth:64,
+    spriteHeight:64,
 
     speed:3,
-
     direction:"down",
-
     frame:1,
 
     animationTimer:0,
     animationDirection:1,
 
     image:new Image()
-
 };
 
 player.image.src = "assets/characters/player.png";
 
 export function updatePlayer(canvas){
-
     if(dialogue.isOpen) return;
-
     let moving = false;
 
     if(keys["ArrowUp"]){
-
         player.y-=player.speed;
         player.direction="up";
         moving = true;
-
     }
 
     if(keys["ArrowDown"]){
-
         player.y+=player.speed;
         player.direction="down";
         moving = true;
-
     }
 
     if(keys["ArrowLeft"]){
-
         player.x-=player.speed;
         player.direction="left";
         moving = true;
-
     }
 
     if(keys["ArrowRight"]){
-
         player.x+=player.speed;
         player.direction="right";
         moving = true;
-
     }
 
-if(moving){
+    if(moving){
+        player.animationTimer++;
+        if(player.animationTimer >= 12){
+            player.animationTimer = 0;
+            player.frame += player.animationDirection;
 
-    player.animationTimer++;
+            if(player.frame >= 2){
+                player.frame = 2;
+                player.animationDirection = -1;
+            }
 
-    if(player.animationTimer >= 12){
-
+            if(player.frame <= 0){
+                player.frame = 0;
+                player.animationDirection = 1;
+            }
+        }
+    }else{
+        player.frame = 1;
         player.animationTimer = 0;
-
-        player.frame += player.animationDirection;
-
-        if(player.frame >= 2){
-
-            player.frame = 2;
-            player.animationDirection = -1;
-
-        }
-
-        if(player.frame <= 0){
-
-            player.frame = 0;
-            player.animationDirection = 1;
-
-        }
-
+        player.animationDirection = 1;
     }
-
-}else{
-
-    player.frame = 1;
-    player.animationTimer = 0;
-    player.animationDirection = 1;
-
-}
 
     // 맵 밖으로 못 나가기
-
     player.x = Math.max(
         0,
         Math.min(player.x, canvas.width-player.width)
@@ -115,6 +88,7 @@ if(moving){
         Math.min(player.y, canvas.height-player.height)
     );
 
+    player.sortY = player.y + player.spriteHeight;
 }
 
 export function drawPlayer(ctx){
@@ -123,23 +97,18 @@ export function drawPlayer(ctx){
     let row = 0;
 
     switch(player.direction){
-
     case "down":
         row = 0;
         break;
-
     case "left":
         row = 1;
         break;
-
     case "right":
         row = 2;
         break;
-
     case "up":
         row = 3;
         break;
-
     }
 
     const sx = player.frame * FRAME_SIZE;
