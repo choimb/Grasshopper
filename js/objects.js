@@ -22,6 +22,20 @@ export const objects = [
             width: OBJECT_SCALE,
             height: DESK_COLLISION_HEIGHT
             }
+    },
+    {
+        type:"desk",
+        image:deskLeft,
+        x:300,
+        y:120,
+        width:OBJECT_SCALE,
+        height:OBJECT_SCALE,
+        collision:{
+            x:0,
+            y:DESK_COLLISION_Y,
+            width:OBJECT_SCALE,
+            height:DESK_COLLISION_HEIGHT
+        }
     }
 ];
 

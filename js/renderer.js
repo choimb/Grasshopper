@@ -3,7 +3,12 @@
 // =====================================
 
 export function drawRenderQueue(ctx, renderQueue){
-    renderQueue.sort((a,b)=>a.sortY-b.sortY);
+    renderQueue.sort((a,b)=>{
+    if(a.sortY === b.sortY){
+        return 0;
+    }
+    return a.sortY - b.sortY;
+});
     for(const entity of renderQueue){
         entity.draw(ctx);
     }
