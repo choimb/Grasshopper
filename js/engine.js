@@ -26,6 +26,10 @@ import {
     isKeyPressed
 } from "./input.js";
 
+import {
+    drawMap
+} from "./map.js";
+
 export function startEngine(canvas, ctx){
 
     function update(){
@@ -45,14 +49,9 @@ export function startEngine(canvas, ctx){
     function draw(){
 
         // 배경
-        ctx.fillStyle="#7fc97f";
-        ctx.fillRect(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
+        drawMap(ctx);
 
+        // NPC
         drawNPC(ctx);
         drawInteraction(ctx, player);
 
