@@ -46,6 +46,8 @@ const OBJECT_SIZE = 64;
 const DESK_COLLISION_HEIGHT = 40;
 const DESK_COLLISION_Y =
 OBJECT_SIZE - DESK_COLLISION_HEIGHT;
+const DESK_COLLISION_WIDTH = 50;
+
 
 
 // 오브젝트
@@ -86,9 +88,9 @@ function createDesk({
         bottomImage:image.bottom,
         topImage:image.top,
         collision:{
-            x:0,
+            x:7,
             y:DESK_COLLISION_Y,
-            width:OBJECT_SIZE,
+            width:DESK_COLLISION_WIDTH,
             height:DESK_COLLISION_HEIGHT
         }
     });
