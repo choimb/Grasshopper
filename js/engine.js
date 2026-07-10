@@ -12,7 +12,7 @@ import {
     updateNPCs,
     drawInteraction,
     getNPCEntities
-} from "./npc.js";
+} from "./npc/npc.js";
 
 import {
     npcs,
