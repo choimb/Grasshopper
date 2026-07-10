@@ -14,10 +14,8 @@ const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 
 // 게임 내부 해상도
-
-canvas.width = 960;
-canvas.height = 544;
+canvas.width = 896;
+canvas.height = 640;
 
 // 엔진 시작
-
 startEngine(canvas, ctx);

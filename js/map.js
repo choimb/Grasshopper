@@ -39,35 +39,36 @@ export const currentMap = createMap({
 
     floor:{
         image:classroomFloor,
-        x:64,
-        y:96,
-        width:320,
-        height:224
+        x:128,
+        y:192,
+        columns:10,
+        rows:7,
+        tileSize:64
     },
 
     walls:{
         front:{
             image:classroomWallFront,
-            x:64,
+            x:128,
             y:0,
-            width:320,
-            height:96
+            width:640,
+            height:192
         },
 
         left:{
             image:classroomWallLeft,
             x:0,
             y:0,
-            width:86,
-            height:320
+            width:172,
+            height:640
         },
 
         right:{
             image:classroomWallRight,
-            x:362,
+            x:724,
             y:0,
-            width:86,
-            height:320
+            width:172,
+            height:640
         }
     }
 });
@@ -75,13 +76,17 @@ export const currentMap = createMap({
 // 바닥
 function drawFloor(ctx){
     const floor = currentMap.floor;
-    ctx.drawImage(
-        floor.image,
-        floor.x,
-        floor.y,
-        floor.width,
-        floor.height
-    );
+    for(let row = 0; row < floor.rows; row++){
+        for(let col = 0; col < floor.columns; col++){
+            ctx.drawImage(
+                floor.image,
+                floor.x + col * floor.tileSize,
+                floor.y + row * floor.tileSize,
+                floor.tileSize,
+                floor.tileSize
+            );
+        }
+    }
 }
 
 // 벽
