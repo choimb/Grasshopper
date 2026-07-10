@@ -2,7 +2,7 @@
 // NPC
 // =====================================
 
-import { dialogue } from "./dialogue.js";
+import { dialogue } from "../dialogue.js";
 import { npcs } from "./npc/npcManager.js";
 
 // NPC 업데이트
