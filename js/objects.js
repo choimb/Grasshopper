@@ -32,13 +32,13 @@ images.desk.default.left.bottom.src =
 "assets/objects/desk_default_left_bottom.png";
 
 images.desk.default.left.top.src =
-"assets/objects/desk_default_left_top.png";
+"assets/objects/desk_left_top.png";
 
 images.desk.default.right.bottom.src =
 "assets/objects/desk_default_right_bottom.png";
 
 images.desk.default.right.top.src =
-"assets/objects/desk_default_right_top.png";
+"assets/objects/desk_right_top.png";
 
 
 // 설정
@@ -99,7 +99,6 @@ function buildObjects(){
     objects.length = 0;
     const classroom = getCurrentClassroom();
     for(const object of classroom.objects){
-
         switch(object.type){
             case "desk":
                 createDesk({
