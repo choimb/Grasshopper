@@ -9,11 +9,15 @@ import {
 } from "./player.js";
 
 import {
-    npc,
-    updateNPC,
+    updateNPCs,
     drawInteraction,
-    getNPCEntity
+    getNPCEntities
 } from "./npc.js";
+
+import {
+    npcs,
+    buildNPCs
+} from "./npc/npcManager.js";
 
 import {
     dialogue,
@@ -32,15 +36,19 @@ export function startEngine(canvas, ctx){
 
     function update(){
         updatePlayer(canvas);
-        updateNPC(player);
+        updateNPCs(player);
 
         if(isKeyPressed("KeyZ")){
             if(dialogue.isOpen){
                 nextDialogue();
             }
-            else if(npc.canInteract){
-                openDialogue(npc);
-        }
+            else{
+                const target =
+                    npcs.find(npc=>npc.canInteract);
+                if(target){
+                    openDialogue(target);
+                }
+            }
     }
 }
 
@@ -54,7 +62,7 @@ export function startEngine(canvas, ctx){
 
         // Y축 정렬 대상
         const normalQueue = [
-            getNPCEntity(),
+            ...getNPCEntities(),
             getPlayerEntity()
         ];
 
@@ -68,7 +76,9 @@ export function startEngine(canvas, ctx){
 
         // 개발용
         drawCollision(ctx);
-        drawInteraction(ctx, player);
+        for(const npc of npcs){
+            drawInteraction(ctx, npc, player);
+        }
         drawDialogue(ctx, canvas);
     }
 
@@ -78,6 +88,11 @@ export function startEngine(canvas, ctx){
         requestAnimationFrame(gameLoop);
     }
 
+    function loadMap(){
+    buildNPCs();
+    }
+
+    loadMap();
     gameLoop();
 
 }

@@ -13,6 +13,7 @@ memodImage.src =
 export const npcDatabase = {
 
     digitalBread:{
+        name: "디지털빵",
         image:digitalBreadImage,
         spriteWidth:64,
         spriteHeight:64,
@@ -27,6 +28,7 @@ export const npcDatabase = {
 
     },
      memod:{
+        name: "매머드대공",
         image:memodImage,
         spriteWidth:64,
         spriteHeight:64,

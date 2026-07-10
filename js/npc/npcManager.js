@@ -37,8 +37,15 @@ export function buildNPCs(){
 
             spriteWidth:base.spriteWidth,
             spriteHeight:base.spriteHeight,
+            collision:{
+                x:16,
+                y:44,
+                width:32,
+                height:20
+            },
 
             image:base.image,
+            name:base.name,
             direction:
                 npcData.direction ?? "down",
             frame:1,
