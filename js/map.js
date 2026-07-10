@@ -42,8 +42,8 @@ export const currentMap = createMap({
 
     floor:{
         image:classroomFloor,
-        x:128,
-        y:192,
+        x:160,
+        y:256,
         columns:9,
         rows:6,
         tileSize:64
@@ -52,9 +52,9 @@ export const currentMap = createMap({
     walls:{
         front:{
             image:classroomWallFront,
-            x:128,
+            x:160,
             y:0,
-            width:640,
+            width:576,
             height:192
         },
 
@@ -68,7 +68,7 @@ export const currentMap = createMap({
 
         right:{
             image:classroomWallRight,
-            x:724,
+            x:736,
             y:0,
             width:172,
             height:640
@@ -79,9 +79,9 @@ export const currentMap = createMap({
 
         // 정면 벽
         {
-            x:128,
+            x:160,
             y:0,
-            width:640,
+            width:576,
             height:192
         },
 
