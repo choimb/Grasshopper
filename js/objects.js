@@ -2,104 +2,143 @@
 // Objects
 // =====================================
 
+import { getCurrentClassroom } from "./school/schoolManager.js";
+import { getFloorInfo } from "./map.js";
 
-// 이미지 로드
+// 이미지
+const images = {
 
-const deskBottom = new Image();
-deskBottom.src = "assets/objects/desk_default_left_bottom.png";
+    desk:{
 
-const deskTop = new Image();
-deskTop.src = "assets/objects/desk_default_left_top.png";
+        default:{
+
+            left:{
+                bottom:new Image(),
+                top:new Image()
+            },
+
+            right:{
+                bottom:new Image(),
+                top:new Image()
+            }
+
+        }
+
+    }
+
+};
+
+images.desk.default.left.bottom.src =
+"assets/objects/desk_default_left_bottom.png";
+
+images.desk.default.left.top.src =
+"assets/objects/desk_default_left_top.png";
+
+images.desk.default.right.bottom.src =
+"assets/objects/desk_default_right_bottom.png";
+
+images.desk.default.right.top.src =
+"assets/objects/desk_default_right_top.png";
 
 
-// 공통 설정
-const OBJECT_SCALE = 64;
+// 설정
+const OBJECT_SIZE = 64;
 const DESK_COLLISION_HEIGHT = 40;
-const DESK_COLLISION_Y = OBJECT_SCALE - DESK_COLLISION_HEIGHT;
+const DESK_COLLISION_Y =
+OBJECT_SIZE - DESK_COLLISION_HEIGHT;
 
 
-// 오브젝트 생성 함수
+// 오브젝트
+export const objects = [];
 
-function createObject({
-    type,
-    x,
-    y,
-    width = OBJECT_SCALE,
-    height = OBJECT_SCALE,
-
-    collision,
-    bottomImage,
-    topImage
-}){
-
+// 좌표 계산
+function gridToPixel(gridX, gridY){
+    const floor = getFloorInfo();
     return{
-        type,
-        x,
-        y,
-        width,
-        height,
-        collision,
-        bottomImage,
-        topImage
+        x: floor.x + gridX * floor.tileSize,
+        y: floor.y + gridY * floor.tileSize
     };
 }
 
 
-// 맵에 배치된 오브젝트
-export const objects = [
-    createObject({
+// 책상 생성
+function createDesk({
+    variant,
+    side,
+    gridX,
+    gridY
+}){
+
+    const pos = gridToPixel(
+        gridX,
+        gridY
+    );
+
+    const image =
+        images.desk[variant][side];
+
+    objects.push({
         type:"desk",
-        x:300,
-        y:200,
+        x:pos.x,
+        y:pos.y,
+        width:OBJECT_SIZE,
+        height:OBJECT_SIZE,
+        bottomImage:image.bottom,
+        topImage:image.top,
         collision:{
             x:0,
             y:DESK_COLLISION_Y,
-            width:OBJECT_SCALE,
+            width:OBJECT_SIZE,
             height:DESK_COLLISION_HEIGHT
-        },
-        bottomImage:deskBottom,
-        topImage:deskTop
-    }),
+        }
+    });
+}
 
-    createObject({
-        type:"desk",
-        x:300,
-        y:120,
-        collision:{
-            x:0,
-            y:DESK_COLLISION_Y,
-            width:OBJECT_SCALE,
-            height:DESK_COLLISION_HEIGHT
-        },
-        bottomImage:deskBottom,
-        topImage:deskTop
-    })
-];
+// 빌드
+function buildObjects(){
+    objects.length = 0;
+    const classroom = getCurrentClassroom();
+    for(const object of classroom.objects)
 
+        switch(object.type){
+            case "desk":
+                createDesk({
+                    variant:object.variant,
+                    side:object.side,
+                    gridX:object.gridX,
+                    gridY:object.gridY
+                });
+                break;
+        }
+    }
+}
 
-// Renderer가 사용할 레이어 반환
+buildObjects();
+
+// 레이어
 export function getObjectLayers(){
     const below = [];
     const above = [];
 
     for(const object of objects){
-        // 아래 레이어
         below.push({
             draw(ctx){
                 ctx.drawImage(
                     object.bottomImage,
-
                     object.x,
                     object.y,
-
                     object.width,
                     object.height
                 );
             }
         });
 
-        // 위 레이어
         above.push({
+
+            sortY:
+                object.y +
+                object.collision.y +
+                object.collision.height,
 
             draw(ctx){
                 ctx.drawImage(
@@ -117,5 +156,4 @@ export function getObjectLayers(){
         below,
         above
     };
-
 }

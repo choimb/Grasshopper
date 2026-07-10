@@ -2,6 +2,7 @@
 // Map
 // =====================================
 
+
 // 이미지
 
 const classroomFloor = new Image();
@@ -102,6 +103,7 @@ export const currentMap = createMap({
     ]
 });
 
+
 // 바닥
 function drawFloor(ctx){
     const floor = currentMap.floor;
@@ -155,4 +157,8 @@ export function drawMap(ctx){
 
 export function getMapCollisions(){
     return currentMap.collisions;
+}
+
+export function getFloorInfo(){
+    return currentMap.floor;
 }
