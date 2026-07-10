@@ -68,7 +68,7 @@ export const currentMap = createMap({
 
         right:{
             image:classroomWallRight,
-            x:736,
+            x:660,
             y:0,
             width:172,
             height:576
@@ -79,7 +79,7 @@ export const currentMap = createMap({
 
         // 정면 벽
         {
-            x:160,
+            x:128,
             y:0,
             width:576,
             height:192
@@ -90,15 +90,15 @@ export const currentMap = createMap({
             x:0,
             y:0,
             width:128,
-            height:640
+            height:576
         },
 
         // 오른쪽 벽
         {
-            x:768,
+            x:704,
             y:0,
             width:128,
-            height:640
+            height:576
         }
     ]
 });
