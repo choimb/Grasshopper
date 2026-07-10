@@ -2,54 +2,119 @@
 // Map
 // =====================================
 
-export const TILE_SIZE = 32;
+// 이미지
 
-// 사용할 타일 이미지
-const floorTile = new Image();
-floorTile.src = "assets/tiles/floor.png";
+const classroomFloor = new Image();
+classroomFloor.src = "assets/maps/classroom_floor.png";
 
-// 테스트용 맵 데이터
-export const mapData = [
+const classroomWallFront = new Image();
+classroomWallFront.src = "assets/maps/classroom_wall_front.png";
 
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+const classroomWallLeft = new Image();
+classroomWallLeft.src = "assets/maps/classroom_wall_left.png";
 
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+const classroomWallRight = new Image();
+classroomWallRight.src = "assets/maps/classroom_wall_right.png";
 
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+// 맵 생성 함수
+function createMap({
+    width,
+    height,
+    floor,
+    walls
+}){
+    return{
+        width,
+        height,
+        floor,
+        walls
+    };
+}
 
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
-];
+// 현재 맵
+export const currentMap = createMap({
+    width:448,
+    height:320,
 
-export function drawMap(ctx){
+    floor:{
+        image:classroomFloor,
+        x:64,
+        y:96,
+        width:320,
+        height:224
+    },
 
-    for(let y = 0; y < mapData.length; y++){
+    walls:{
+        front:{
+            image:classroomWallFront,
+            x:64,
+            y:0,
+            width:320,
+            height:96
+        },
 
-        for(let x = 0; x < mapData[y].length; x++){
+        left:{
+            image:classroomWallLeft,
+            x:0,
+            y:0,
+            width:86,
+            height:320
+        },
 
-            ctx.drawImage(
-                floorTile,
-                x * TILE_SIZE,
-                y * TILE_SIZE,
-                TILE_SIZE,
-                TILE_SIZE
-            );
-
+        right:{
+            image:classroomWallRight,
+            x:362,
+            y:0,
+            width:86,
+            height:320
         }
-
     }
+});
 
+// 바닥
+function drawFloor(ctx){
+    const floor = currentMap.floor;
+    ctx.drawImage(
+        floor.image,
+        floor.x,
+        floor.y,
+        floor.width,
+        floor.height
+    );
+}
+
+// 벽
+function drawWalls(ctx){
+    const walls = currentMap.walls;
+    ctx.drawImage(
+        walls.front.image,
+        walls.front.x,
+        walls.front.y,
+        walls.front.width,
+        walls.front.height
+    );
+
+    ctx.drawImage(
+        walls.left.image,
+        walls.left.x,
+        walls.left.y,
+        walls.left.width,
+        walls.left.height
+    );
+
+    ctx.drawImage(
+        walls.right.image,
+        walls.right.x,
+        walls.right.y,
+        walls.right.width,
+        walls.right.height
+    );
+}
+
+
+// 맵
+export function drawMap(ctx){
+    drawFloor(ctx);
+    drawWalls(ctx);
 }
