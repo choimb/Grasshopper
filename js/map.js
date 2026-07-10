@@ -21,21 +21,23 @@ function createMap({
     width,
     height,
     floor,
-    walls
+    walls,
+    collisions
 }){
     return{
         width,
         height,
         floor,
-        walls
+        walls,
+        collisions
     };
 }
 
 
 // 현재 맵
 export const currentMap = createMap({
-    width:448,
-    height:320,
+    width:896,
+    height:640,
 
     floor:{
         image:classroomFloor,
