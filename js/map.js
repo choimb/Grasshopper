@@ -5,7 +5,7 @@
 // 이미지
 
 const classroomFloor = new Image();
-classroomFloor.src = "assets/maps/classroom_floor.png";
+classroomFloor.src = "assets/tiles/classroom_floor.png";
 
 const classroomWallFront = new Image();
 classroomWallFront.src = "assets/maps/classroom_wall_front.png";
