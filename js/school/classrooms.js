@@ -54,28 +54,28 @@ export const classrooms = {
                 type:"desk",
                 variant:"default",
                 side:"left",
+                gridX:3,
+                gridY:2
+            },
+            {
+                type:"desk",
+                variant:"default",
+                side:"right",
                 gridX:4,
                 gridY:2
             },
             {
                 type:"desk",
                 variant:"default",
-                side:"right",
-                gridX:5,
-                gridY:2
-            },
-            {
-                type:"desk",
-                variant:"default",
                 side:"left",
-                gridX:7,
+                gridX:6,
                 gridY:2
             },
             {
                 type:"desk",
                 variant:"default",
                 side:"right",
-                gridX:8,
+                gridX:7,
                 gridY:2
             },
             {
