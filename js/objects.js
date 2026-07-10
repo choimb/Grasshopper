@@ -98,7 +98,7 @@ function createDesk({
 function buildObjects(){
     objects.length = 0;
     const classroom = getCurrentClassroom();
-    for(const object of classroom.objects)
+    for(const object of classroom.objects){
 
         switch(object.type){
             case "desk":
