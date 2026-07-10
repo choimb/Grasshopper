@@ -2,14 +2,24 @@
 // Renderer
 // =====================================
 
-export function drawRenderQueue(ctx, renderQueue){
-    renderQueue.sort((a,b)=>{
-    if(a.sortY === b.sortY){
-        return 0;
+export function drawRenderer(
+    ctx,
+    belowQueue,
+    normalQueue,
+    aboveQueue
+){
+    for(const entity of belowQueue){
+        entity.draw(ctx);
     }
-    return a.sortY - b.sortY;
-});
-    for(const entity of renderQueue){
+    normalQueue.sort(
+        (a,b)=>a.sortY-b.sortY
+    );
+
+    for(const entity of normalQueue){
+        entity.draw(ctx);
+    }
+
+    for(const entity of aboveQueue){
         entity.draw(ctx);
     }
 }
