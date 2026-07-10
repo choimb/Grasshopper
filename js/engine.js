@@ -5,15 +5,14 @@
 import {
     player,
     updatePlayer,
-    drawPlayer,
     getPlayerEntity
 } from "./player.js";
 
 import {
     npc,
-    drawNPC,
     updateNPC,
-    drawInteraction
+    drawInteraction,
+    getNPCEntity
 } from "./npc.js";
 
 import {
@@ -25,11 +24,9 @@ import {
 
 import {isKeyPressed} from "./input.js";
 import {drawMap} from "./map.js";
-import {getObjectEntities} from "./objects.js";
 import {drawCollision} from "./collision.js";
-import { drawRenderQueue } from "./renderer.js";
-
-import { getNPCEntity } from "./npc.js";
+import {getObjectLayers} from "./objects.js";
+import {drawRenderer} from "./renderer.js";
 
 export function startEngine(canvas, ctx){
 
@@ -49,15 +46,25 @@ export function startEngine(canvas, ctx){
 
     function draw(){
 
-        // 배경
+        // 바닥
         drawMap(ctx);
 
-        const renderQueue = [
-            ...getObjectEntities(),
+        // 오브젝트 레이어
+        const objectLayers = getObjectLayers();
+
+        // Y축 정렬 대상
+        const normalQueue = [
             getNPCEntity(),
             getPlayerEntity()
         ];
-        drawRenderQueue(ctx, renderQueue);
+
+        // 렌더링
+        drawRenderer(
+            ctx,
+            objectLayers.below,
+            normalQueue,
+            objectLayers.above
+        );
 
         // 개발용
         drawCollision(ctx);
