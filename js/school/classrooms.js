@@ -53,11 +53,21 @@ export const classrooms = {
         ],
 
         npcs:[
-            {
-                id:"digitalBread",
-                gridX:6,
-                gridY:2
-            }
+
+        {
+            id:"digitalBread",
+            gridX:6,
+            gridY:2,
+            direction:"down"
+        },
+
+        {
+            id:"memod",
+            gridX:4,
+            gridY:0,
+            direction:"down"
+        }
+
         ]
     }),
 
