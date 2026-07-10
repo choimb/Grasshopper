@@ -39,7 +39,7 @@ export const classrooms = {
                 type:"desk",
                 variant:"default",
                 side:"left",
-                gridX:2,
+                gridX:0,
                 gridY:2
             },
 
@@ -47,8 +47,50 @@ export const classrooms = {
                 type:"desk",
                 variant:"default",
                 side:"right",
-                gridX:3,
+                gridX:1,
                 gridY:2
+            },
+            {
+                type:"desk",
+                variant:"default",
+                side:"left",
+                gridX:4,
+                gridY:2
+            },
+            {
+                type:"desk",
+                variant:"default",
+                side:"right",
+                gridX:5,
+                gridY:2
+            },
+            {
+                type:"desk",
+                variant:"default",
+                side:"left",
+                gridX:7,
+                gridY:2
+            },
+            {
+                type:"desk",
+                variant:"default",
+                side:"right",
+                gridX:8,
+                gridY:2
+            },
+            {
+                type:"desk",
+                variant:"default",
+                side:"left",
+                gridX:0,
+                gridY:4
+            },
+            {
+                type:"desk",
+                variant:"default",
+                side:"left",
+                gridX:1,
+                gridY:4
             }
         ],
 
