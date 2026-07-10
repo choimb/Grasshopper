@@ -37,8 +37,8 @@ function createMap({
 
 // 현재 맵
 export const currentMap = createMap({
-    width:896,
-    height:640,
+    width:832,
+    height:576,
 
     floor:{
         image:classroomFloor,
@@ -63,7 +63,7 @@ export const currentMap = createMap({
             x:0,
             y:0,
             width:172,
-            height:640
+            height:576
         },
 
         right:{
@@ -71,7 +71,7 @@ export const currentMap = createMap({
             x:736,
             y:0,
             width:172,
-            height:640
+            height:576
         }
     },
 
