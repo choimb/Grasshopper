@@ -98,7 +98,7 @@ export const classrooms = {
 
         {
             id:"digitalBread",
-            gridX:6,
+            gridX:5,
             gridY:2,
             direction:"down"
         },
