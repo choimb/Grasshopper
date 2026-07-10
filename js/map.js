@@ -44,8 +44,8 @@ export const currentMap = createMap({
         image:classroomFloor,
         x:128,
         y:192,
-        columns:10,
-        rows:7,
+        columns:9,
+        rows:6,
         tileSize:64
     },
 
