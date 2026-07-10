@@ -90,7 +90,7 @@ export const currentMap = createMap({
             x:0,
             y:0,
             width:128,
-            height:576
+            height:577
         },
 
         // 오른쪽 벽
@@ -98,7 +98,7 @@ export const currentMap = createMap({
             x:704,
             y:0,
             width:128,
-            height:576
+            height:577
         }
     ]
 });
