@@ -43,7 +43,7 @@ export const currentMap = createMap({
     floor:{
         image:classroomFloor,
         x:160,
-        y:256,
+        y:192,
         columns:9,
         rows:6,
         tileSize:64
