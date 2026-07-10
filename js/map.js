@@ -70,7 +70,34 @@ export const currentMap = createMap({
             width:172,
             height:640
         }
-    }
+    },
+
+    collisions:[
+
+        // 정면 벽
+        {
+            x:128,
+            y:0,
+            width:640,
+            height:192
+        },
+
+        // 왼쪽 벽
+        {
+            x:0,
+            y:0,
+            width:128,
+            height:640
+        },
+
+        // 오른쪽 벽
+        {
+            x:768,
+            y:0,
+            width:128,
+            height:640
+        }
+    ]
 });
 
 // 바닥
@@ -122,4 +149,8 @@ function drawWalls(ctx){
 export function drawMap(ctx){
     drawFloor(ctx);
     drawWalls(ctx);
+}
+
+export function getMapCollisions(){
+    return currentMap.collisions;
 }

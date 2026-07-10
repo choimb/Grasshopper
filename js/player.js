@@ -4,7 +4,7 @@
 
 import { dialogue } from "./dialogue.js";
 import { keys } from "./input.js";
-import { checkObjectCollision } from "./collision.js";
+import { checkCollision } from "./collision.js";
 
 export const player = {
     x:100,
@@ -65,9 +65,9 @@ export function updatePlayer(canvas){
         moving = true;
     }
 
-    if(!checkObjectCollision(nextX, nextY, player)){
-        player.x = nextX;
-        player.y = nextY;
+    if(!checkCollision(nextX, nextY, player)){
+    player.x = nextX;
+    player.y = nextY;
     }
 
     if(moving){

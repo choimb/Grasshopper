@@ -3,8 +3,37 @@
 // =====================================
 
 import { objects } from "./objects.js";
+import { getMapCollisions } from "./map.js";
 
-export function checkObjectCollision(nextX, nextY, player){
+// 맵 충돌
+function checkMapCollision(nextX, nextY, player){
+
+    const mapCollisions = getMapCollisions();
+
+    const playerBox = {
+        x: nextX + player.collision.x,
+        y: nextY + player.collision.y,
+        width: player.collision.width,
+        height: player.collision.height
+    };
+
+    for(const wall of mapCollisions){
+
+        const hit =
+            playerBox.x < wall.x + wall.width &&
+            playerBox.x + playerBox.width > wall.x &&
+            playerBox.y < wall.y + wall.height &&
+            playerBox.y + playerBox.height > wall.y;
+
+        if(hit){
+            return true;
+        }
+    }
+    return false;
+}
+
+// 오브젝트 충돌
+function checkObjectCollision(nextX, nextY, player){
 
     const playerBox = {
         x: nextX + player.collision.x,
@@ -14,6 +43,7 @@ export function checkObjectCollision(nextX, nextY, player){
     };
 
     for(const object of objects){
+
         const objectBox = {
             x: object.x + object.collision.x,
             y: object.y + object.collision.y,
@@ -34,8 +64,36 @@ export function checkObjectCollision(nextX, nextY, player){
     return false;
 }
 
+// 최종 충돌
+export function checkCollision(nextX, nextY, player){
+
+    if(checkMapCollision(nextX, nextY, player)){
+        return true;
+    }
+
+    if(checkObjectCollision(nextX, nextY, player)){
+        return true;
+    }
+
+    return false;
+}
+
+
+// 개발용 표시
 export function drawCollision(ctx){
     ctx.strokeStyle = "red";
+
+    // 맵 충돌
+    for(const wall of getMapCollisions()){
+        ctx.strokeRect(
+            wall.x,
+            wall.y,
+            wall.width,
+            wall.height
+        );
+    }
+
+    // 오브젝트 충돌
     for(const object of objects){
         ctx.strokeRect(
             object.x + object.collision.x,
