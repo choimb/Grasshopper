@@ -7,8 +7,8 @@ import { keys } from "./input.js";
 import { checkCollision } from "./collision.js";
 
 export const player = {
-    x:100,
-    y:100,
+    x:300,
+    y:300,
     width:32,
     height:32,
     sortY: 0,
