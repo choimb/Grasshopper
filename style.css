@@ -45,15 +45,13 @@ body{
 #gameCanvas{
 
     width:100%;
-
-    aspect-ratio:30/17;
+    height:auto;
 
     border:3px solid white;
-
     background:#7fc97f;
 
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
+    image-rendering:pixelated;
+    image-rendering:crisp-edges;
 
 }
 
