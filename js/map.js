@@ -52,7 +52,7 @@ export const currentMap = createMap({
     walls:{
         front:{
             image:classroomWallFront,
-            x:160,
+            x:128,
             y:0,
             width:576,
             height:192
