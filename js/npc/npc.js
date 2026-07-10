@@ -3,7 +3,7 @@
 // =====================================
 
 import { dialogue } from "../dialogue.js";
-import { npcs } from "./npc/npcManager.js";
+import { npcs } from "./npcManager.js";
 
 // NPC 업데이트
 export function updateNPCs(player){
