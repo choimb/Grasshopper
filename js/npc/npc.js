@@ -141,3 +141,22 @@ export function getNPCEntities(){
         }
     }));
 }
+
+export function getNearestNPC(player){
+    let nearest = null;
+    let nearestDistance = Infinity;
+
+    for(const npc of npcs){
+
+        if(!npc.canInteract) continue;
+        const dx = player.x - npc.x;
+        const dy = player.y - npc.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if(distance < nearestDistance){
+            nearestDistance = distance;
+            nearest = npc;
+        }
+    }
+    return nearest;
+}
