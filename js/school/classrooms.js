@@ -34,64 +34,48 @@ export const classrooms = {
         },
 
         objects:[
-            // 책상
-            {
-                type:"desk",
-                variant:"default",
-                side:"left",
-                gridX:0,
-                gridY:2
-            },
 
-            {
-                type:"desk",
-                variant:"default",
-                side:"right",
-                gridX:1,
-                gridY:2
-            },
-            {
-                type:"desk",
-                variant:"default",
-                side:"left",
-                gridX:3,
-                gridY:2
-            },
-            {
-                type:"desk",
-                variant:"default",
-                side:"right",
-                gridX:4,
-                gridY:2
-            },
-            {
-                type:"desk",
-                variant:"default",
-                side:"left",
-                gridX:6,
-                gridY:2
-            },
-            {
-                type:"desk",
-                variant:"default",
-                side:"right",
-                gridX:7,
-                gridY:2
-            },
-            {
-                type:"desk",
-                variant:"default",
-                side:"left",
-                gridX:0,
-                gridY:4
-            },
-            {
-                type:"desk",
-                variant:"default",
-                side:"left",
-                gridX:1,
-                gridY:4
-            }
+        // 학생 책상
+        {
+            id:"desk_default_left",
+            gridX:0,
+            gridY:2
+        },
+        {
+            id:"desk_default_right",
+            gridX:1,
+            gridY:2
+        },
+        {
+            id:"desk_default_left",
+            gridX:3,
+            gridY:2
+        },
+        {
+            id:"desk_default_right",
+            gridX:4,
+            gridY:2
+        },
+        {
+            id:"desk_default_left",
+            gridX:6,
+            gridY:2
+        },
+        {
+            id:"desk_default_right",
+            gridX:7,
+            gridY:2
+        },
+        {
+            id:"desk_default_left",
+            gridX:0,
+            gridY:4
+        },
+        {
+            id:"desk_default_right",
+            gridX:1,
+            gridY:4
+        }
         ],
 
         npcs:[
