@@ -7,9 +7,9 @@
 const OBJECT_SIZE = 32;
 
 const DESK_COLLISION = {
-    x:5,
+    x:0,
     y:12,
-    width:24,
+    width:35,
     height:20
 };
 
