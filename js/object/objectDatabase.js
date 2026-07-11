@@ -9,15 +9,15 @@ const OBJECT_SIZE = 32;
 const DESK_COLLISION = {
     x:0,
     y:12,
-    width:35,
+    width:30,
     height:20
 };
 
 const CHAIR_COLLISION = {
     x:9,
-    y:18,
-    width:14,
-    height:14
+    y:15,
+    width:13,
+    height:10
 };
 
 
