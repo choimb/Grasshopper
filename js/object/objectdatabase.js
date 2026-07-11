@@ -1,0 +1,255 @@
+// =====================================
+// Object Database
+// =====================================
+
+
+// Common
+const TILE_SIZE = 64;
+
+const DESK_COLLISION = {
+    x:6,
+    y:24,
+    width:55,
+    height:40
+};
+
+const CHAIR_COLLISION = {
+    x:18,
+    y:36,
+    width:28,
+    height:28
+};
+
+
+// Image Loader
+function loadImage(path){
+    const image = new Image();
+    image.src = path;
+    return image;
+}
+
+
+// Split Object (상판/하판)
+function createSplitObject({
+    bottom,
+    top,
+    collision,
+
+    width = TILE_SIZE,
+    height = TILE_SIZE,
+    offsetX = 0,
+    offsetY = 0
+}){
+    return{
+        type:"split",
+        width,
+        height,
+        offsetX,
+        offsetY,
+
+        bottomImage:
+            loadImage(bottom),
+        topImage:
+            loadImage(top),
+        collision
+    };
+}
+
+// Static Object (벽, TV 등)
+function createStaticObject({
+    image,
+    width = TILE_SIZE,
+    height = TILE_SIZE,
+    offsetX = 0,
+    offsetY = 0,
+    collision = null
+}){
+    return{
+        type:"static",
+        width,
+        height,
+        offsetX,
+        offsetY,
+        image:
+            loadImage(image),
+        collision
+    };
+}
+
+// Normal Object (의자, 휴지통, 화분 등)
+function createNormalObject({
+    image,
+    collision = null,
+    width = OBJECT_SIZE,
+    height = OBJECT_SIZE,
+    offsetX = 0,
+    offsetY = 0
+}){
+    return{
+        type:"normal",
+        width,
+        height,
+        offsetX,
+        offsetY,
+        image:
+            loadImage(image),
+        collision
+    };
+}
+
+// =====================================
+// Database
+export const objectDatabase={
+
+    // 학생 책상
+    desk_default_left:
+        createSplitObject({
+
+            bottom:
+            "assets/objects/desk_default_left_bottom.png",
+            top:
+            "assets/objects/desk_left_top.png",
+            collision:DESK_COLLISION
+
+        }),
+
+    desk_default_right:
+        createSplitObject({
+
+            bottom:
+            "assets/objects/desk_default_right_bottom.png",
+            top:
+            "assets/objects/desk_right_top.png",
+            collision:DESK_COLLISION
+
+        }),
+
+    desk_empty_left:
+        createSplitObject({
+
+            bottom:
+            "assets/objects/desk_empty_left_bottom.png",
+            top:
+            "assets/objects/desk_left_top.png",
+            collision:DESK_COLLISION
+
+        }),
+
+    desk_empty_right:
+        createSplitObject({
+
+            bottom:
+            "assets/objects/desk_empty_right_bottom.png",
+            top:
+            "assets/objects/desk_right_top.png",
+            collision:DESK_COLLISION
+
+        }),
+
+    desk_side_left:
+        createSplitObject({
+
+            bottom:
+            "assets/objects/desk_side_left_bottom.png",
+            top:
+            "assets/objects/desk_left_top.png",
+            collision:DESK_COLLISION
+
+        }),
+
+    desk_side_right:
+        createSplitObject({
+
+            bottom:
+            "assets/objects/desk_side_right_bottom.png",
+            top:
+            "assets/objects/desk_right_top.png",
+            collision:DESK_COLLISION
+
+        }),
+
+    // --------------------
+    // 교탁
+    teacher_desk:
+        createSplitObject({
+
+            bottom:
+            "assets/objects/teacher_desk_bottom.png",
+            top:
+            "assets/objects/teacher_desk_top.png",
+
+            collision:{
+                x:4,
+                y:24,
+                width:56,
+                height:40
+            }
+
+        }),
+
+    // --------------------
+    // 학생 의자
+    chair_front:
+    createNormalObject({
+        image:
+        "assets/objects/chair_front.png",
+        collision:CHAIR_COLLISION
+    }),
+
+    chair_back:
+    createNormalObject({
+        image:
+        "assets/objects/chair_back.png",
+        collision:CHAIR_COLLISION
+    }),
+
+    chair_left:
+    createNormalObject({
+        image:
+        "assets/objects/chair_left.png",
+        collision:CHAIR_COLLISION
+    }),
+
+    chair_right:
+    createNormalObject({
+        image:
+        "assets/objects/chair_right.png",
+        collision:CHAIR_COLLISION
+    }),
+
+    // --------------------
+    // TV
+    tv_off:
+        createStaticObject({
+            image:
+            "assets/objects/tv_off.png"
+        }),
+
+    tv_wait:
+        createStaticObject({
+            image:
+            "assets/objects/tv_wait.png"
+        }),
+
+    tv_channel:
+        createStaticObject({
+            image:
+            "assets/objects/tv_channel.png"
+        }),
+
+    tv_video:
+        createStaticObject({
+            image:
+            "assets/objects/tv_video.png"
+        }),
+
+    // --------------------
+    // 책장
+    bookshelf:
+        createStaticObject({
+            image:
+            "assets/objects/bookshelf.png"
+        })
+
+
+};

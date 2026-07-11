@@ -2,7 +2,7 @@
 // Collision
 // =====================================
 
-import { objects } from "./objects.js";
+import { objects } from "./object/objectManager.js";
 import { getMapCollisions } from "./map.js";
 
 // 맵 충돌

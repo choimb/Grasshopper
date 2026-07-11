@@ -7,11 +7,11 @@ import {
     updatePlayer,
     getPlayerEntity
 } from "./player.js";
-
 import {
     updateNPCs,
     drawInteraction,
-    getNPCEntities
+    getNPCEntities,
+    getNearestNPC
 } from "./npc/npc.js";
 
 import {
@@ -29,7 +29,7 @@ import {
 import {isKeyPressed} from "./input.js";
 import {drawMap} from "./map.js";
 import {drawCollision} from "./collision.js";
-import {getObjectLayers} from "./objects.js";
+import {buildObjects, getObjectLayers} from "./object/objectManager.js";
 import {drawRenderer} from "./renderer.js";
 
 export function startEngine(canvas, ctx){
@@ -43,8 +43,7 @@ export function startEngine(canvas, ctx){
                 nextDialogue();
             }
             else{
-                const target =
-                    npcs.find(npc=>npc.canInteract);
+                const target = getNearestNPC(player);
                 if(target){
                     openDialogue(target);
                 }
@@ -62,6 +61,7 @@ export function startEngine(canvas, ctx){
 
         // Y축 정렬 대상
         const normalQueue = [
+            ...objectLayers.normal,
             ...getNPCEntities(),
             getPlayerEntity()
         ];
@@ -89,7 +89,8 @@ export function startEngine(canvas, ctx){
     }
 
     function loadMap(){
-    buildNPCs();
+        buildObjects();
+        buildNPCs();
     }
 
     loadMap();
