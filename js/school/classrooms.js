@@ -101,12 +101,14 @@ export const classrooms = {
         {
             id:"chair_front",
             gridX:1,
-            gridY:3
+            gridY:3,
+            offsetY=10
         },
         {
             id:"chair_right",
-            gridX:6,
-            gridY:3
+            gridX:-3,
+            gridY:3,
+            offsetY=16
         },
         {
             id:"chair_back",
@@ -116,7 +118,17 @@ export const classrooms = {
         {
             id:"chair_right",
             gridX:0,
-            gridY:5
+            gridY:5,
+            offsetX=-5,
+            offsetY=-5
+        },
+
+        //교탁
+        {
+            id:"teacher_desk",
+            gridX:3,
+            gridY:1,
+            offsetX=16
         }
         ],
 
