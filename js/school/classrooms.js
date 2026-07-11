@@ -123,8 +123,7 @@ export const classrooms = {
         {
             id:"teacher_desk",
             gridX:3,
-            gridY:1,
-            offsetX=16
+            gridY:1
         }
         ],
 
