@@ -4,7 +4,7 @@
 
 
 // Common
-const OBJECT_SIZE = 64;
+const OBJECT_SIZE = 32;
 
 const DESK_COLLISION = {
     x:6,
