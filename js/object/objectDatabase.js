@@ -4,7 +4,7 @@
 
 
 // Common
-const TILE_SIZE = 64;
+const OBJECT_SIZE = 64;
 
 const DESK_COLLISION = {
     x:6,
@@ -35,8 +35,8 @@ function createSplitObject({
     top,
     collision,
 
-    width = TILE_SIZE,
-    height = TILE_SIZE,
+    width = OBJECT_SIZE,
+    height = OBJECT_SIZE,
     offsetX = 0,
     offsetY = 0
 }){
@@ -58,8 +58,8 @@ function createSplitObject({
 // Static Object (벽, TV 등)
 function createStaticObject({
     image,
-    width = TILE_SIZE,
-    height = TILE_SIZE,
+    width = OBJECT_SIZE,
+    height = OBJECT_SIZE,
     offsetX = 0,
     offsetY = 0,
     collision = null
