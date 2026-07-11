@@ -106,7 +106,7 @@ export const objectDatabase={
         createSplitObject({
 
             bottom:
-            "assets/objects/desk_default_left_bottom.png",
+            "assets/objects/desk_default_left.png",
             top:
             "assets/objects/desk_left_top.png",
             collision:DESK_COLLISION
@@ -117,7 +117,7 @@ export const objectDatabase={
         createSplitObject({
 
             bottom:
-            "assets/objects/desk_default_right_bottom.png",
+            "assets/objects/desk_default_right.png",
             top:
             "assets/objects/desk_right_top.png",
             collision:DESK_COLLISION
@@ -128,7 +128,7 @@ export const objectDatabase={
         createSplitObject({
 
             bottom:
-            "assets/objects/desk_empty_left_bottom.png",
+            "assets/objects/desk_empty_left.png",
             top:
             "assets/objects/desk_left_top.png",
             collision:DESK_COLLISION
@@ -139,7 +139,7 @@ export const objectDatabase={
         createSplitObject({
 
             bottom:
-            "assets/objects/desk_empty_right_bottom.png",
+            "assets/objects/desk_empty_right.png",
             top:
             "assets/objects/desk_right_top.png",
             collision:DESK_COLLISION
@@ -150,7 +150,7 @@ export const objectDatabase={
         createSplitObject({
 
             bottom:
-            "assets/objects/desk_side_left_bottom.png",
+            "assets/objects/desk_side_left.png",
             top:
             "assets/objects/desk_left_top.png",
             collision:DESK_COLLISION
@@ -161,7 +161,7 @@ export const objectDatabase={
         createSplitObject({
 
             bottom:
-            "assets/objects/desk_side_right_bottom.png",
+            "assets/objects/desk_side_right.png",
             top:
             "assets/objects/desk_right_top.png",
             collision:DESK_COLLISION
@@ -172,19 +172,16 @@ export const objectDatabase={
     // 교탁
     teacher_desk:
         createSplitObject({
-
             bottom:
             "assets/objects/teacher_desk_bottom.png",
             top:
             "assets/objects/teacher_desk_top.png",
-
             collision:{
                 x:4,
                 y:24,
                 width:56,
                 height:40
             }
-
         }),
 
     // --------------------
@@ -223,24 +220,6 @@ export const objectDatabase={
         createStaticObject({
             image:
             "assets/objects/tv_off.png"
-        }),
-
-    tv_wait:
-        createStaticObject({
-            image:
-            "assets/objects/tv_wait.png"
-        }),
-
-    tv_channel:
-        createStaticObject({
-            image:
-            "assets/objects/tv_channel.png"
-        }),
-
-    tv_video:
-        createStaticObject({
-            image:
-            "assets/objects/tv_video.png"
         }),
 
     // --------------------
