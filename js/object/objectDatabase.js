@@ -7,17 +7,17 @@
 const OBJECT_SIZE = 32;
 
 const DESK_COLLISION = {
-    x:6,
-    y:24,
-    width:55,
-    height:40
+    x:2,
+    y:12,
+    width:27,
+    height:20
 };
 
 const CHAIR_COLLISION = {
-    x:18,
-    y:36,
-    width:28,
-    height:28
+    x:9,
+    y:18,
+    width:14,
+    height:14
 };
 
 
