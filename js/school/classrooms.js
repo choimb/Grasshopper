@@ -42,7 +42,7 @@ export const classrooms = {
             gridY:2
         },
         {
-            id:"desk_default_right",
+            id:"desk_empty_right",
             gridX:1,
             gridY:2
         },
@@ -57,17 +57,17 @@ export const classrooms = {
             gridY:2
         },
         {
-            id:"desk_default_left",
+            id:"desk_empty_left",
             gridX:6,
             gridY:2
         },
         {
-            id:"desk_default_right",
+            id:"desk_empty_right",
             gridX:7,
             gridY:2
         },
         {
-            id:"desk_default_left",
+            id:"desk_empty_left",
             gridX:0,
             gridY:4
         },
@@ -75,6 +75,48 @@ export const classrooms = {
             id:"desk_default_right",
             gridX:1,
             gridY:4
+        },
+        {
+            id:"desk_default_left",
+            gridX:3,
+            gridY:4
+        },
+        {
+            id:"desk_default_right",
+            gridX:4,
+            gridY:4
+        },
+        {
+            id:"desk_default_left",
+            gridX:6,
+            gridY:4
+        },
+        {
+            id:"desk_side_right",
+            gridX:7,
+            gridY:4
+        },
+
+        // 책상 의자
+        {
+            id:"chair_front",
+            gridX:1,
+            gridY:3
+        },
+        {
+            id:"chair_right",
+            gridX:6,
+            gridY:3
+        },
+        {
+            id:"chair_back",
+            gridX:7,
+            gridY:3
+        },
+        {
+            id:"chair_right",
+            gridX:0,
+            gridY:5
         }
         ],
 
