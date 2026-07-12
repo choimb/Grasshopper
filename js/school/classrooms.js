@@ -130,7 +130,7 @@ export const classrooms = {
             id:"teacher_desk",
             gridX:3,
             gridY:1,
-            offsetX:24,
+            offsetX:22,
             offsetY:0
         },
 
@@ -140,7 +140,7 @@ export const classrooms = {
             layer:"frontWall",
             gridX:0,
             gridY:-2,
-            offsetX:0,
+            offsetX:-8,
             offsetY:0
         },
         {
