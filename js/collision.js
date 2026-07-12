@@ -43,6 +43,9 @@ function checkObjectCollision(nextX, nextY, player){
     };
 
     for(const object of objects){
+        if(!object.collision){
+            continue;
+        }
 
         const objectBox = {
             x: object.x + object.collision.x,
@@ -95,6 +98,10 @@ export function drawCollision(ctx){
 
     // 오브젝트 충돌
     for(const object of objects){
+        if(!object.collision){
+            continue;
+        }
+
         ctx.strokeRect(
             object.x + object.collision.x,
             object.y + object.collision.y,
