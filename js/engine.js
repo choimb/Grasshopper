@@ -68,10 +68,11 @@ export function startEngine(canvas, ctx){
 
         // 렌더링
         drawRenderer(
-            ctx,
-            objectLayers.below,
-            normalQueue,
-            objectLayers.above
+        ctx,
+        objectLayers.frontWall,
+        objectLayers.below,
+        normalQueue,
+        objectLayers.above
         );
 
         // 개발용

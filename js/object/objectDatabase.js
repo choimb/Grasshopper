@@ -176,11 +176,13 @@ export const objectDatabase={
             "assets/objects/teacher_desk_bottom.png",
             top:
             "assets/objects/teacher_desk_top.png",
+            width:42,
+            height:32,
             collision:{
-                x:4,
-                y:24,
-                width:56,
-                height:40
+                x:2,
+                y:12,
+                width:38,
+                height:20
             }
         }),
 
@@ -219,7 +221,9 @@ export const objectDatabase={
     tv_off:
         createStaticObject({
             image:
-            "assets/objects/tv_off.png"
+            "assets/objects/tv_off.png",
+            width:57,
+            height:45
         }),
 
     // --------------------
@@ -227,7 +231,9 @@ export const objectDatabase={
     bookshelf:
         createStaticObject({
             image:
-            "assets/objects/bookshelf.png"
+            "assets/objects/bookshelf.png",
+            width:51,
+            height:66
         })
 
 

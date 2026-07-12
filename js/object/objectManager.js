@@ -47,17 +47,36 @@ export function buildObjects(){
             );
             continue;
         }
+        let offsetX = (base.offsetX ?? 0) + (data.offsetX ?? 0);
+        let offsetY = (base.offsetY ?? 0) +  (data.offsetY ?? 0);
+        const floor = getFloorInfo();
+
+        switch(data.layer){
+
+            case "frontWall":
+                offsetY -= floor.tileSize;
+                break;
+
+            case "leftWall":
+                offsetX -= floor.tileSize;
+                break;
+
+            case "rightWall":
+                offsetX += floor.tileSize;
+                break;
+        }
 
         const pos = gridToPixel(
             data.gridX,
             data.gridY,
-            data.offsetX ?? 0,
-            data.offsetY ?? 0
+            offsetX,
+            offsetY
         );
 
         objects.push({
             id:data.id,
             type:base.type,
+            layer:data.layer ?? "normal",
 
             x:pos.x,
             y:pos.y,
@@ -96,6 +115,7 @@ export function getObjectLayers(){
     const below = [];
     const normal = [];
     const above = [];
+    const frontWall = [];
 
     for(const object of objects){
         switch(object.type){
@@ -155,7 +175,7 @@ export function getObjectLayers(){
                 break;
 
             case "static":
-                below.push({
+                const entity = {
                     draw(ctx){
                         ctx.drawImage(
                             object.image,
@@ -165,12 +185,31 @@ export function getObjectLayers(){
                             object.height
                         );
                     }
-                });
+                };
+
+                switch(object.layer){
+                    case "frontWall":
+                        frontWall.push(entity);
+                        break;
+
+                    case "leftWall":
+                        frontWall.push(entity);
+                        break;
+
+                    case "rightWall":
+                        frontWall.push(entity);
+                        break;
+
+                    default:
+                        below.push(entity);
+                        break;
+                }
                 break;
-        }
-    }
+            }
+       }
 
     return{
+        frontWall,
         below,
         normal,
         above
