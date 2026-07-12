@@ -139,7 +139,7 @@ export const classrooms = {
             id:"tv_off",
             layer:"frontWall",
             gridX:0,
-            gridY:0,
+            gridY:-1,
             offsetX:10,
             offsetY:-50
         },
@@ -149,7 +149,7 @@ export const classrooms = {
             gridX:0,
             gridY:0,
             offsetX:9,
-            offsetY:-32
+            offsetY:-33
         }
         ],
 

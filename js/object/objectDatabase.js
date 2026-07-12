@@ -180,9 +180,9 @@ export const objectDatabase={
             height:32,
             collision:{
                 x:0,
-                y:8,
-                width:40,
-                height:20
+                y:10,
+                width:42,
+                height:22
             }
         }),
 
@@ -233,7 +233,13 @@ export const objectDatabase={
             image:
             "assets/objects/bookshelf.png",
             width:51,
-            height:66
+            height:66,
+            collision:{
+                x:0,
+                y:10,
+                width:51,
+                height:50
+            }
         })
 
 
