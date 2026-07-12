@@ -180,9 +180,9 @@ export const objectDatabase={
             height:32,
             collision:{
                 x:0,
-                y:10,
+                y:11,
                 width:42,
-                height:22
+                height:20
             }
         }),
 
@@ -236,8 +236,8 @@ export const objectDatabase={
             height:66,
             collision:{
                 x:0,
-                y:10,
-                width:51,
+                y:20,
+                width:40,
                 height:50
             }
         })

@@ -110,7 +110,7 @@ export const classrooms = {
             gridX:6,
             gridY:3,
             offsetX:-20,
-            offsetY:-15
+            offsetY:-20
         },
         {
             id:"chair_back",
@@ -122,7 +122,7 @@ export const classrooms = {
             gridX:0,
             gridY:5,
             offsetX:-15,
-            offsetY:-10
+            offsetY:-15
         },
 
         //교탁
@@ -130,7 +130,7 @@ export const classrooms = {
             id:"teacher_desk",
             gridX:3,
             gridY:1,
-            offsetX:25,
+            offsetX:24,
             offsetY:0
         },
 
@@ -139,9 +139,9 @@ export const classrooms = {
             id:"tv_off",
             layer:"frontWall",
             gridX:0,
-            gridY:-1,
-            offsetX:10,
-            offsetY:-50
+            gridY:-2,
+            offsetX:0,
+            offsetY:0
         },
         {
             id:"bookshelf",
@@ -149,7 +149,7 @@ export const classrooms = {
             gridX:0,
             gridY:0,
             offsetX:9,
-            offsetY:-33
+            offsetY:-34
         }
         ],
 
