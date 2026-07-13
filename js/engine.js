@@ -11,7 +11,7 @@ import {
     updateNPCs,
     drawInteraction,
     getNPCEntities,
-    getNearestNPC
+    getFocusedNPC
 } from "./npc/npc.js";
 
 import {
