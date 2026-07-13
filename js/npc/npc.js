@@ -4,29 +4,7 @@
 
 import { dialogue } from "../dialogue.js";
 import { npcs } from "./npcManager.js";
-
-
-// Interaction UI Images
-const interactionIcons = {
-
-    normal: new Image(),
-    search: new Image(),
-    complete: new Image(),
-    quest: new Image(),
-    lock: new Image(),
-    shop: new Image()
-
-};
-
-interactionIcons.normal.src = "assets/ui/normal.png";
-interactionIcons.search.src = "assets/ui/search.png";
-interactionIcons.complete.src = "assets/ui/complete.png";
-interactionIcons.quest.src = "assets/ui/quest.png";
-interactionIcons.lock.src = "assets/ui/lock.png";
-interactionIcons.shop.src = "assets/ui/shop.png";
-
-const pressZImage = new Image();
-pressZImage.src = "assets/ui/press_z.png";
+import { getUITheme } from "../ui/uiManager.js";
 
 
 // NPC 업데이트
@@ -124,8 +102,9 @@ export function drawNPC(ctx, npc){
 
 
 function drawIcon(ctx, npc, x, y){
+    const ui = getUITheme();
     const image =
-        interactionIcons[npc.interactionIcon];
+        ui[npc.interactionIcon];
 
     if(!image) return;
     const size = 64;
@@ -140,8 +119,9 @@ function drawIcon(ctx, npc, x, y){
 
 function drawPressZ(ctx, x, y){
     const size = 64;
+    const ui = getUITheme();
     ctx.drawImage(
-        pressZImage,
+        ui.pressZ,
         x - size / 2,
         y - size / 2,
         size,
@@ -186,5 +166,5 @@ export function getNPCEntities(){
 }
 
 export function getFocusedNPC(){
-    return npcs.find(npc => npc.isFocused);
+    return npcs.find(npc => npc.isFocused) ?? null;
 }

@@ -3,6 +3,7 @@
 // =====================================
 
 import { keys } from "./input.js";
+import { getUITheme } from "./ui/uiManager.js";
 
 export const dialogue = {
 
@@ -49,25 +50,14 @@ export function drawDialogue(ctx, canvas){
     if(!dialogue.isOpen) return;
 
     // 배경
-    ctx.fillStyle = "#FFFDF4";
-    ctx.beginPath();
-    ctx.roundRect(
-
+    const ui = getUITheme();
+    ctx.drawImage(
+        ui.dialogueBox,
         20,
         canvas.height - 150,
         canvas.width - 40,
-        130,
-        18
-
+        130
     );
-
-    ctx.fill();
-
-    // 테두리
-
-    ctx.strokeStyle = "#9FC93C";
-    ctx.lineWidth = 4;
-    ctx.stroke();
 
     // 이름
 
