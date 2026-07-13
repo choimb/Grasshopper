@@ -5,6 +5,30 @@
 import { dialogue } from "../dialogue.js";
 import { npcs } from "./npcManager.js";
 
+
+// Interaction UI Images
+const interactionIcons = {
+
+    normal: new Image(),
+    search: new Image(),
+    complete: new Image(),
+    quest: new Image(),
+    lock: new Image(),
+    shop: new Image()
+
+};
+
+interactionIcons.normal.src = "assets/ui/normal.png";
+interactionIcons.search.src = "assets/ui/search.png";
+interactionIcons.complete.src = "assets/ui/complete.png";
+interactionIcons.quest.src = "assets/ui/quest.png";
+interactionIcons.lock.src = "assets/ui/lock.png";
+interactionIcons.shop.src = "assets/ui/shop.png";
+
+const pressZImage = new Image();
+pressZImage.src = "assets/ui/press_z.png";
+
+
 // NPC 업데이트
 export function updateNPCs(player){
 
@@ -96,6 +120,33 @@ export function drawNPC(ctx, npc){
         npc.spriteHeight
     );
 }
+
+
+function drawIcon(ctx, npc, x, y){
+    const image =
+        interactionIcons[npc.interactionIcon];
+
+    if(!image) return;
+    ctx.drawImage(
+        image,
+        x - 16,
+        y - 16,
+        32,
+        32
+    );
+}
+
+function drawPressZ(ctx, x, y){
+    ctx.drawImage(
+        pressZImage,
+        x - 38,
+        y - 44,
+        76,
+        18
+    );
+}
+
+
 
 // 말풍선
 export function drawInteraction(ctx, npc){
