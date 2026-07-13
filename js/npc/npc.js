@@ -128,22 +128,24 @@ function drawIcon(ctx, npc, x, y){
         interactionIcons[npc.interactionIcon];
 
     if(!image) return;
+    const size = 64;
     ctx.drawImage(
         image,
-        x - 16,
-        y - 16,
-        32,
-        32
+        x - size / 2,
+        y - size / 2,
+        size,
+        size
     );
 }
 
 function drawPressZ(ctx, x, y){
+    const size = 64;
     ctx.drawImage(
         pressZImage,
-        x - 38,
-        y - 18,
-        76,
-        18
+        x - size / 2,
+        y - size / 2,
+        size,
+        size
     );
 }
 
@@ -184,21 +186,6 @@ export function getNPCEntities(){
     }));
 }
 
-export function getNearestNPC(player){
-    let nearest = null;
-    let nearestDistance = Infinity;
-
-    for(const npc of npcs){
-
-        if(!npc.canDetect) continue;
-        const dx = player.x - npc.x;
-        const dy = player.y - npc.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if(distance < nearestDistance){
-            nearestDistance = distance;
-            nearest = npc;
-        }
-    }
-    return nearest;
+export function getFocusedNPC(){
+    return npcs.find(npc => npc.isFocused);
 }

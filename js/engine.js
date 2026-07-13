@@ -43,7 +43,7 @@ export function startEngine(canvas, ctx){
                 nextDialogue();
             }
             else{
-                const target = getNearestNPC(player);
+                const target = getFocusedNPC();
                 if(target){
                     openDialogue(target);
                 }
