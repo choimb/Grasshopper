@@ -162,12 +162,11 @@ export function drawInteraction(ctx, npc){
     }
 
     const x = npc.x + npc.spriteWidth / 2;
-    const y = npc.y - 14;
-
+    const y = npc.y - 30;
     drawIcon(ctx, npc, x, y);
 
     if(npc.isFocused){
-        drawPressZ(ctx, x, y - 30);
+        drawPressZ(ctx, x, y);
     }
 }
 
