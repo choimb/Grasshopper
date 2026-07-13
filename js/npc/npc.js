@@ -15,10 +15,10 @@ export function updateNPCs(player){
 
         if(distance > npc.detectDistance){
             npc.direction = "down";
-            npc.canInteract = false;
+            npc.canDetect = false;
             continue;
         }
-        npc.canInteract = true;
+        npc.canDetect = true;
 
         if(Math.abs(dx) > Math.abs(dy)){
             if(dx > 0){
@@ -36,6 +36,25 @@ export function updateNPCs(player){
                 npc.direction = "up";
             }
         }
+    // 기본값
+    npc.isFocused = false;
+    }
+    let nearest = null;
+    let nearestDistance = Infinity;
+
+    for(const npc of npcs){
+        if(!npc.canDetect) continue;
+        const dx = player.x - npc.x;
+        const dy = player.y - npc.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if(distance < nearestDistance){
+            nearestDistance = distance;
+            nearest = npc;
+        }
+    }
+    if(nearest){
+        nearest.isFocused = true;
     }
 }
 
@@ -79,24 +98,18 @@ export function drawNPC(ctx, npc){
 }
 
 // 말풍선
-export function drawInteraction(ctx, npc, player){
+export function drawInteraction(ctx, npc){
     if(dialogue.isOpen) return;
-    if(!npc.canInteract) return;
+    if(!npc.canDetect) return;
 
     const x = npc.x + npc.spriteWidth / 2;
     const y = npc.y - 15;
-    const actionText = npc.interactionText;
     ctx.fillStyle = "#FFFDF4";
     ctx.beginPath();
     const padding = 18;
     ctx.font = "bold 14px sans-serif";
 
-    const textWidth = Math.max(
-        ctx.measureText("[ Z ]").width,
-        ctx.measureText(actionText).width
-    );
-
-    const bubbleWidth = textWidth + padding * 2;
+    const bubbleWidth = 56;
 
     ctx.roundRect(
         x - bubbleWidth / 2,
@@ -123,8 +136,13 @@ export function drawInteraction(ctx, npc, player){
     ctx.font = "bold 14px sans-serif";
     ctx.fillText("[ Z ]", x, y - 18);
 
-    ctx.font = "13px sans-serif";
-    ctx.fillText(actionText, x, y);
+    ctx.font = "18px sans-serif";
+    ctx.fillText("...", x, y - 2);
+
+    if(npc.isFocused){
+        ctx.font = "bold 14px sans-serif";
+        ctx.fillText("[ Z ]", x, y - 20);
+    }
 }
 
 

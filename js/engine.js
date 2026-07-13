@@ -78,7 +78,7 @@ export function startEngine(canvas, ctx){
         // 개발용
         drawCollision(ctx);
         for(const npc of npcs){
-            drawInteraction(ctx, npc, player);
+            drawInteraction(ctx, npc);
         }
         drawDialogue(ctx, canvas);
     }
