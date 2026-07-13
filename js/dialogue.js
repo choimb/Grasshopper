@@ -5,7 +5,7 @@
 import { keys } from "./input.js";
 import { getUITheme } from "./ui/uiManager.js";
 import { drawPortraits, showPortrait, setDimmed } from "./portrait/portraitManager.js";
-
+import { hideAllPortraits } from "./portrait/portraitManager.js";
 
 export const dialogue = {
 
@@ -47,12 +47,7 @@ export function closeDialogue(){
     dialogue.isOpen = false;
     dialogue.currentNPC = null;
     dialogue.currentLine = 0;
-import {
 
-    hideAllPortraits
-
-}
-from "./portrait/portraitManager.js";
 hideAllPortraits();
 
 }
