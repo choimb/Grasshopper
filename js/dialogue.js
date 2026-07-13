@@ -4,6 +4,8 @@
 
 import { keys } from "./input.js";
 import { getUITheme } from "./ui/uiManager.js";
+import { drawPortraits, showPortrait, setDimmed } from "./portrait/portraitManager.js";
+
 
 export const dialogue = {
 
@@ -18,7 +20,13 @@ export function openDialogue(npc){
     dialogue.isOpen = true;
     dialogue.currentNPC = npc;
     dialogue.currentLine = 0;
+showPortrait({
+    slot:"right",
+    character:"digitalBread",
+    emotion:"normal"
+});
 
+setDimmed("right", false);
 }
 
 export function nextDialogue(){
@@ -39,6 +47,13 @@ export function closeDialogue(){
     dialogue.isOpen = false;
     dialogue.currentNPC = null;
     dialogue.currentLine = 0;
+import {
+
+    hideAllPortraits
+
+}
+from "./portrait/portraitManager.js";
+hideAllPortraits();
 
 }
 
@@ -51,6 +66,9 @@ export function drawDialogue(ctx, canvas){
 
     // 배경
     const ui = getUITheme();
+
+    drawPortraits(ctx, canvas);
+
     ctx.drawImage(
         ui.dialogueBox,
         20,
