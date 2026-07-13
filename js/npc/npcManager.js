@@ -52,7 +52,7 @@ export function buildNPCs(){
 
             dialogue:
                 base.dialogue,
-            detectDistance:160,
+            detectDistance:80,
 
             canDetect:false,
             isFocused:false,

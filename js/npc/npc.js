@@ -166,7 +166,7 @@ export function getNearestNPC(player){
 
     for(const npc of npcs){
 
-        if(!npc.canInteract) continue;
+        if(!npc.canDetect) continue;
         const dx = player.x - npc.x;
         const dy = player.y - npc.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
