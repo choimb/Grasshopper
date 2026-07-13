@@ -37,7 +37,7 @@ export function updateNPCs(player){
         const dy = player.y - npc.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if(distance > npc.detectDistance){
+        if(distance > npc.iconDistance){
             npc.direction = "down";
             npc.canDetect = false;
             continue;
@@ -72,6 +72,7 @@ export function updateNPCs(player){
         const dy = player.y - npc.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
+        if(distance > npc.interactDistance) continue;
         if(distance < nearestDistance){
             nearestDistance = distance;
             nearest = npc;
@@ -140,59 +141,31 @@ function drawPressZ(ctx, x, y){
     ctx.drawImage(
         pressZImage,
         x - 38,
-        y - 44,
+        y - 18,
         76,
         18
     );
 }
 
 
-
-// 말풍선
 export function drawInteraction(ctx, npc){
     if(dialogue.isOpen) return;
-    if(!npc.canDetect) return;
+
+    // 항상 표시가 아니면 가까이 왔을 때만
+    if(
+        npc.visibleMode !== "always" &&
+        !npc.canDetect
+    ){
+        return;
+    }
 
     const x = npc.x + npc.spriteWidth / 2;
-    const y = npc.y - 15;
-    ctx.fillStyle = "#FFFDF4";
-    ctx.beginPath();
-    const padding = 18;
-    ctx.font = "bold 14px sans-serif";
+    const y = npc.y - 14;
 
-    const bubbleWidth = 56;
-
-    ctx.roundRect(
-        x - bubbleWidth / 2,
-        y - 40,
-        bubbleWidth,
-        45,
-        10
-    );
-
-    ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(x - 8, y + 5);
-    ctx.lineTo(x + 8, y + 5);
-    ctx.lineTo(x, y + 14);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.strokeStyle = "#444";
-    ctx.lineWidth = 1;
-    ctx.stroke();
-    ctx.fillStyle = "#222";
-    ctx.textAlign = "center";
-
-    ctx.font = "bold 14px sans-serif";
-    ctx.fillText("[ Z ]", x, y - 18);
-
-    ctx.font = "18px sans-serif";
-    ctx.fillText("...", x, y - 2);
+    drawIcon(ctx, npc, x, y);
 
     if(npc.isFocused){
-        ctx.font = "bold 14px sans-serif";
-        ctx.fillText("[ Z ]", x, y - 20);
+        drawPressZ(ctx, x, y - 30);
     }
 }
 

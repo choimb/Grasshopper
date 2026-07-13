@@ -52,7 +52,11 @@ export function buildNPCs(){
 
             dialogue:
                 base.dialogue,
-            detectDistance:80,
+
+            // 아이콘이 보이기 시작하는 거리
+            iconDistance:80,
+            // PRESS [Z]가 뜨는 거리
+            interactDistance:60,
 
             canDetect:false,
             isFocused:false,
