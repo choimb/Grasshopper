@@ -49,16 +49,16 @@ export function buildNPCs(){
             direction:
                 npcData.direction ?? "down",
             frame:1,
-            interactionText:
-                base.interactionText,
 
             dialogue:
                 base.dialogue,
-
             detectDistance:160,
 
-            canInteract:false
+            canDetect:false,
+            isFocused:false,
 
+            interactionIcon:"normal",
+            visibleMode:"near"
         });
 
     }
