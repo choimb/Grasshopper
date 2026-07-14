@@ -93,6 +93,17 @@ export function drawDialogue(ctx, canvas){
 
     const dialogueY = canvas.height - UILayout.dialogue.height - UILayout.dialogue.bottom;
 
+    console.log(ui.dialogueBox.src);
+    console.log(dialogueY);
+
+ctx.fillStyle = "red";
+ctx.fillRect(
+    UILayout.dialogue.x,
+    dialogueY,
+    UILayout.dialogue.width,
+    UILayout.dialogue.height
+);
+
     ctx.drawImage(
         ui.dialogueBox,
         UILayout.dialogue.x,
@@ -109,9 +120,9 @@ export function drawDialogue(ctx, canvas){
         dialogue.currentNPC.dialogue[dialogue.currentLine];
 
     ctx.fillText(
-    dialogue.currentNPC.name,
-    UILayout.dialogue.textX,
-    canvas.height - 110
+        dialogue.currentNPC.name,
+        UILayout.dialogue.textX,
+        dialogueY + UILayout.dialogue.nameY
     );
 
     // 대사
@@ -121,6 +132,6 @@ export function drawDialogue(ctx, canvas){
     ctx.fillText(
         currentDialogue.text,
         UILayout.dialogue.textX,
-        canvas.height - 70
+        dialogueY + UILayout.dialogue.textY
     );
 }
