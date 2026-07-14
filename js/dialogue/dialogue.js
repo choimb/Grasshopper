@@ -91,16 +91,17 @@ export function drawDialogue(ctx, canvas){
 
     drawPortraits(ctx, canvas);
 
+    const dialogueY = canvas.height - UILayout.dialogue.height - UILayout.dialogue.bottom;
+
     ctx.drawImage(
         ui.dialogueBox,
         UILayout.dialogue.x,
-        UILayout.dialogue.y,
+        dialogueY,
         UILayout.dialogue.width,
         UILayout.dialogue.height
     );
 
     // 이름
-
     ctx.fillStyle = "#222";
     ctx.font = "bold 22px sans-serif";
 
