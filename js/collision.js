@@ -82,31 +82,3 @@ export function checkCollision(nextX, nextY, player){
 }
 
 
-// 개발용 표시
-export function drawCollision(ctx){
-    ctx.strokeStyle = "red";
-
-    // 맵 충돌
-    for(const wall of getMapCollisions()){
-        ctx.strokeRect(
-            wall.x,
-            wall.y,
-            wall.width,
-            wall.height
-        );
-    }
-
-    // 오브젝트 충돌
-    for(const object of objects){
-        if(!object.collision){
-            continue;
-        }
-
-        ctx.strokeRect(
-            object.x + object.collision.x,
-            object.y + object.collision.y,
-            object.collision.width,
-            object.collision.height
-        );
-    }
-}
