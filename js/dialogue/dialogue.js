@@ -2,16 +2,16 @@
 // Dialogue System
 // =====================================
 
-import { keys } from "./input.js";
-import { getUITheme } from "./ui/uiManager.js";
+import { keys } from "../input.js";
+import { getUITheme } from "../ui/uiManager.js";
 import {
     drawPortraits,
     showPortrait,
     hidePortrait,
     hideAllPortraits,
     setDimmed
-} from "./portrait/portraitManager.js";
-import { UILayout } from "./ui/uiLayout.js";
+} from "../portrait/portraitManager.js";
+import { UILayout } from "../ui/uiLayout.js";
 
 export const dialogue = {
 
