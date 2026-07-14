@@ -49,6 +49,8 @@ export function buildNPCs(){
             portraitId: base.portraitId,
             direction:
                 npcData.direction ?? "down",
+            idleDirection:
+                npcData.direction ?? "down",
             frame:1,
 
             dialogue:

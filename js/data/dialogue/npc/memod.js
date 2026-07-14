@@ -19,12 +19,17 @@ export const memodDialogue = {
         {
             speaker:"npc",
             emotion:"smile",
-            text:"피자 먹자 피자"
+            text:"윤도윤도 피자 먹자 피자"
         },
         {
             speaker:"player",
             emotion:"smile",
             text:"그랭"
+        },
+        {
+            speaker:"npc",
+            emotion:"smile",
+            text:"아싸~"
         }
 
     ]

@@ -93,9 +93,26 @@ export function drawDialogue(ctx, canvas){
         getCurrentDialogue(
             dialogue.currentLine
         );
+    
+    let speakerName = "";
+    switch(currentDialogue.speaker){
+
+    case "npc":
+        speakerName = dialogue.currentNPC.name;
+        break;
+
+    case "player":
+        speakerName = "대구자전거";
+        break;
+
+    case "none":
+        speakerName = "";
+        break;
+
+}
 
     ctx.fillText(
-        dialogue.currentNPC.name,
+        speakerName,
         UILayout.dialogue.textX,
         dialogueY + UILayout.dialogue.nameY
     );

@@ -16,30 +16,39 @@ export function updateNPCs(player){
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if(distance > npc.iconDistance){
-            npc.direction = "down";
+            npc.direction = npc.idleDirection;
             npc.canDetect = false;
             continue;
         }
+
         npc.canDetect = true;
 
-        if(Math.abs(dx) > Math.abs(dy)){
-            if(dx > 0){
-                npc.direction = "right";
+        // 상호작용 거리 안에서만 플레이어를 바라봄
+        if(distance <= npc.interactDistance){
+
+            if(Math.abs(dx) > Math.abs(dy)){
+                if(dx > 0){
+                    npc.direction = "right";
+                }
+                else{
+                    npc.direction = "left";
+                }
             }
             else{
-                npc.direction = "left";
+                if(dy > 0){
+                    npc.direction = "down";
+                }
+                else{
+                    npc.direction = "up";
+                }
             }
         }
         else{
-            if(dy > 0){
-                npc.direction = "down";
-            }
-            else{
-                npc.direction = "up";
-            }
+            npc.direction = npc.idleDirection;
         }
-    // 기본값
-    npc.isFocused = false;
+
+        // 기본값
+        npc.isFocused = false;
     }
     let nearest = null;
     let nearestDistance = Infinity;

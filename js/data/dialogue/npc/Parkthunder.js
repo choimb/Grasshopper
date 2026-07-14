@@ -13,7 +13,7 @@ export const ParkthunderDialogue = {
         },
         {
             speaker:"npc",
-            emotion:"smile",
+            emotion:"normal",
             text:"여자 빼고 다 쏴버릴거임"
         },
         {

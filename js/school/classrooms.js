@@ -163,8 +163,8 @@ export const classrooms = {
         },
         {
             id:"memod",
-            gridX:4,
-            gridY:0,
+            gridX:6,
+            gridY:1,
             direction:"down"
         },
         {
