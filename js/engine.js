@@ -26,6 +26,14 @@ import {
     nextDialogue
 } from "./dialogue/dialogue.js"
 
+const bgm = new Audio(
+    "assets/audio/bgm/school.mp3"
+);
+let bgmStarted = false;
+bgm.loop = true;
+bgm.volume = 0.4;
+
+
 import {isKeyPressed} from "./input.js";
 import {drawMap} from "./map.js";
 import {drawCollision} from "./collision.js";
@@ -35,6 +43,23 @@ import {drawRenderer} from "./renderer.js";
 export function startEngine(canvas, ctx){
 
     function update(){
+
+//임시 노래
+if(
+    !bgmStarted &&
+    (
+        isKeyPressed("ArrowUp") ||
+        isKeyPressed("ArrowDown") ||
+        isKeyPressed("ArrowLeft") ||
+        isKeyPressed("ArrowRight") ||
+        isKeyPressed("KeyZ")
+    )
+){
+    bgm.play();
+    bgmStarted = true;
+}
+//-----
+
         updatePlayer(canvas);
         updateNPCs(player);
 
@@ -95,6 +120,11 @@ export function startEngine(canvas, ctx){
     }
 
     loadMap();
+
+    bgm.play().catch(() => {
+    console.log("BGM 대기중");
+    });
+
     gameLoop();
 
 }
