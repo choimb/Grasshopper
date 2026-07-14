@@ -46,6 +46,7 @@ export function buildNPCs(){
 
             image:base.image,
             name:base.name,
+            portraitId: base.portraitId,
             direction:
                 npcData.direction ?? "down",
             frame:1,

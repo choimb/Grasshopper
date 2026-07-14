@@ -2,6 +2,8 @@
 // Portrait Manager
 // =====================================
 
+import { UILayout } from "../ui/uiLayout.js";
+
 const slots = {
     left: createSlot(),
     right: createSlot()
@@ -77,16 +79,16 @@ function drawSlot(ctx, canvas, slot, side){
     if(!slot.visible) return;
     if(!slot.image) return;
 
-    const width = 280;
-    const height = 407;
+    const width = UILayout.portrait.width;
+    const height = UILayout.portrait.height;
 
     const x =
-        side==="left"
-            ? 20
-            : canvas.width-width-20;
+    side === "left"
+        ? UILayout.portrait.marginX
+        : canvas.width - width - UILayout.portrait.marginX;
 
     const y =
-        canvas.height-height-20;
+    canvas.height - height - UILayout.portrait.marginBottom;
 
     ctx.save();
     ctx.globalAlpha = slot.opacity;
