@@ -93,16 +93,8 @@ export function drawDialogue(ctx, canvas){
 
     const dialogueY = canvas.height - UILayout.dialogue.height - UILayout.dialogue.bottom;
 
-    console.log(ui.dialogueBox.src);
-    console.log(dialogueY);
-
-ctx.fillStyle = "red";
-ctx.fillRect(
-    UILayout.dialogue.x,
-    dialogueY,
-    UILayout.dialogue.width,
-    UILayout.dialogue.height
-);
+console.log(UILayout.dialogue.width);
+console.log(UILayout.dialogue.x);
 
     ctx.drawImage(
         ui.dialogueBox,
