@@ -8,16 +8,16 @@ export const UILayout = {
     portrait:{
         width:380,
         height:553,
-        marginX:35,
+        marginX:15,
         marginBottom:0
     },
 
     // Dialogue
     dialogue:{
-        x:20,
-        width:720,
+        x:10,
+        width:740,
         height:130,
-        bottom:20,
+        bottom:12,
         textX:90,
         nameY:40,
         textY:80,
