@@ -14,7 +14,7 @@ export const UILayout = {
 
     // Dialogue
     dialogue:{
-        x:10,
+        x:36,
         width:760,
         height:180,
         bottom:12,
