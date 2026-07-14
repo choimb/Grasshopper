@@ -93,9 +93,6 @@ export function drawDialogue(ctx, canvas){
 
     const dialogueY = canvas.height - UILayout.dialogue.height - UILayout.dialogue.bottom;
 
-console.log(UILayout.dialogue.width);
-console.log(UILayout.dialogue.x);
-
     ctx.drawImage(
         ui.dialogueBox,
         UILayout.dialogue.x,

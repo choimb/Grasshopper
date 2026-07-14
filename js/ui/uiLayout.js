@@ -14,10 +14,10 @@ export const UILayout = {
 
     // Dialogue
     dialogue:{
-        x:10,
-        width:740,
-        height:130,
-        bottom:12,
+        x:100,
+        width:300,
+        height:200,
+        bottom:100,
         textX:90,
         nameY:40,
         textY:80,
