@@ -4,10 +4,28 @@
 
 import { UILayout } from "../ui/uiLayout.js";
 
+const portraitCache = {};
+
 const slots = {
     left: createSlot(),
     right: createSlot()
 };
+
+function getPortrait(character, emotion){
+
+    if(!portraitCache[character]){
+        portraitCache[character] = {};
+    }
+
+    if(!portraitCache[character][emotion]){
+        const img = new Image();
+        img.src =
+            `assets/portraits/${character}/${emotion}.png`;
+
+        portraitCache[character][emotion] = img;
+    }
+    return portraitCache[character][emotion];
+}
 
 function createSlot(){
     return{
@@ -34,9 +52,8 @@ export function showPortrait({
     target.character = character;
     target.emotion = emotion;
 
-    target.image = new Image();
-    target.image.src =
-        `assets/portraits/${character}/${emotion}.png`;
+    target.image =
+        getPortrait(character, emotion);
 }
 
 export function hidePortrait(slot){
@@ -54,9 +71,11 @@ export function setEmotion(slot, emotion){
     if(!target) return;
     target.emotion = emotion;
 
-    target.image = new Image();
-    target.image.src =
-        `assets/portraits/${target.character}/${emotion}.png`;
+    target.image =
+        getPortrait(
+            target.character,
+            emotion
+        );
 }
 
 export function setDimmed(slot, value){
@@ -108,4 +127,8 @@ function drawSlot(ctx, canvas, slot, side){
 
     ctx.restore();
 
+}
+
+export function hasPortrait(slot){
+    return slots[slot].visible;
 }

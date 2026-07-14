@@ -110,7 +110,3 @@ export function drawDialogue(ctx, canvas){
         dialogueY + UILayout.dialogue.textY
     );
 }
-
-export function hasPortrait(slot){
-    return slots[slot].visible;
-}
