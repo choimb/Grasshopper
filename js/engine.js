@@ -24,7 +24,7 @@ import {
     drawDialogue,
     openDialogue,
     nextDialogue
-} from "./dialogue.js";
+} from "./dialogue/dialogue.js"
 
 import {isKeyPressed} from "./input.js";
 import {drawMap} from "./map.js";
