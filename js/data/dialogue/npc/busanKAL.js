@@ -9,13 +9,13 @@ export const busanKALDialogue = {
         {
             speaker:"npc",
             emotion:"normal",
-            text:"아"
+            text:"여자 50명이 단체로 브왁을 받으면?"
         },
 
         {
             speaker:"npc",
-            emotion:"blank",
-            text:"지금 이만큼 힘듬"
+            emotion:"smile",
+            text:"오십보백보"
         }
 
     ]

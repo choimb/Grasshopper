@@ -158,15 +158,34 @@ export const classrooms = {
         {
             id:"digitalBread",
             gridX:5,
-            gridY:2,
-            direction:"down"
+            gridY:3,
+            direction:"left"
         },
-
         {
             id:"memod",
             gridX:4,
             gridY:0,
             direction:"down"
+        },
+        {
+            id:"busanKAL",
+            gridX:4,
+            gridY:3,
+            direction:"right"
+        },
+        {
+            id:"dongtanC",
+            gridX:0,
+            gridY:5,
+            offsetX:20,
+            offsetY:-20,
+            direction:"down"
+        },
+        {
+            id:"Parkthunder",
+            gridX:1,
+            gridY:0,
+            direction:"up"
         }
 
         ]

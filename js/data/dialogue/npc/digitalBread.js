@@ -8,20 +8,8 @@ export const digitalBreadDialogue = {
 
         {
             speaker:"npc",
-            emotion:"normal",
-            text:"안녕!"
-        },
-
-        {
-            speaker:"npc",
-            emotion:"normal",
-            text:"나는 디지털빵이야."
-        },
-
-        {
-            speaker:"npc",
-            emotion:"normal",
-            text:"빵 먹을래?"
+            emotion:"angry",
+            text:"................."
         }
 
     ]

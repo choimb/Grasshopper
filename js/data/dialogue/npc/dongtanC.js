@@ -9,9 +9,13 @@ export const dongtanCDialogue = {
         {
             speaker:"npc",
             emotion:"normal",
-            text:"크아아악"
+            text:"그대에게 밀키스를 바칩니다. 저와 결혼해주시겠어요?"
         },
-
+        {
+            speaker:"player",
+            emotion:"normal",
+            text:"갑자기?"
+        },
         {
             speaker:"npc",
             emotion:"smile",
