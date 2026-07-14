@@ -2,7 +2,7 @@
 // NPC
 // =====================================
 
-import { dialogue } from "../dialogue.js";
+import { dialogue } from "../dialogue/dialogue.js";
 import { npcs } from "./npcManager.js";
 import { getUITheme } from "../ui/uiManager.js";
 
