@@ -2,13 +2,13 @@
 // Player
 // =====================================
 
-import { dialogue } from "./dialogue.js";
+import { dialogue } from "./dialogue/dialogue.js";
 import { keys } from "./input.js";
 import { checkCollision } from "./collision.js";
 
 export const player = {
-    x:600,
-    y:200,
+    x:300,
+    y:300,
     width:32,
     height:32,
     sortY: 0,
