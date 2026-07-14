@@ -12,6 +12,13 @@ import {
     setDimmed
 } from "../portrait/portraitManager.js";
 import { UILayout } from "../ui/uiLayout.js";
+import {
+    startDialogue,
+    changeDialogue,
+    endDialogue,
+    getCurrentDialogue,
+    getDialogueLength
+} from "./dialogueDirector.js";
 
 export const dialogue = {
 
@@ -27,19 +34,7 @@ export function openDialogue(npc){
     dialogue.currentNPC = npc;
     dialogue.currentLine = 0;
 
-    const currentDialogue =
-        npc.dialogue[0];
-
-    if(currentDialogue.speaker === "npc"){
-        showPortrait({
-            slot:"right",
-            character:npc.id,
-            emotion:currentDialogue.emotion
-        });
-
-        hidePortrait("left");
-        setDimmed("right", false);
-    }
+    startDialogue(npc);
 }
 
 export function nextDialogue(){
@@ -48,27 +43,16 @@ export function nextDialogue(){
     // 마지막 대사였다면 종료
     if(
         dialogue.currentLine >=
-        dialogue.currentNPC.dialogue.length
+        getDialogueLength()
     ){
         closeDialogue();
         return;
     }
 
-    const currentDialogue =
-        dialogue.currentNPC.dialogue[
-            dialogue.currentLine
-        ];
-
-    if(currentDialogue.speaker === "npc"){
-        showPortrait({
-            slot:"right",
-            character:dialogue.currentNPC.id,
-            emotion:currentDialogue.emotion
-        });
-
-        hidePortrait("left");
-        setDimmed("right", false);
-    }
+    changeDialogue(
+        dialogue.currentLine,
+        dialogue.currentNPC
+    );
 }
 
 export function closeDialogue(){
@@ -77,7 +61,7 @@ export function closeDialogue(){
     dialogue.currentNPC = null;
     dialogue.currentLine = 0;
 
-    hideAllPortraits();
+    endDialogue();
 
 }
 
@@ -106,7 +90,9 @@ export function drawDialogue(ctx, canvas){
     ctx.font = "bold 22px sans-serif";
 
     const currentDialogue =
-        dialogue.currentNPC.dialogue[dialogue.currentLine];
+        getCurrentDialogue(
+            dialogue.currentLine
+        );
 
     ctx.fillText(
         dialogue.currentNPC.name,
@@ -123,4 +109,8 @@ export function drawDialogue(ctx, canvas){
         UILayout.dialogue.textX,
         dialogueY + UILayout.dialogue.textY
     );
+}
+
+export function hasPortrait(slot){
+    return slots[slot].visible;
 }
