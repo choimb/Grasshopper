@@ -9,10 +9,20 @@ export function drawDialogueText(
     y,
     maxWidth,
     lineHeight = 30
-){
+    ){
 
     let currentX = x;
     let currentY = y;
+
+    const defaultColor = "#222";
+    const defaultSize = 20;
+    const defaultAlpha = 1;
+
+    let currentColor = defaultColor;
+    let currentSize = defaultSize;
+    let currentAlpha = defaultAlpha;
+
+    let currentOutline = null;
 
     const defaultColor = "#222";
     let currentColor = defaultColor;
@@ -31,29 +41,33 @@ export function drawDialogueText(
                     break;
                 }
 
-                const width =
-                    ctx.measureText(token.value).width;
+                ctx.font = `${currentSize}px sans-serif`;
+                const width = ctx.measureText(token.value).width;
 
-                if(
-                    currentX + width >
-                    x + maxWidth
-                ){
-
+                if(currentX + width > x + maxWidth){
                     currentX = x;
                     currentY += lineHeight;
-
                 }
 
+                ctx.globalAlpha = currentAlpha;
                 ctx.fillStyle = currentColor;
+
+                if(currentOutline){
+                    ctx.strokeStyle = currentOutline;
+                    ctx.lineWidth = 3;
+                    ctx.strokeText(
+                        token.value,
+                        currentX,
+                        currentY
+                    );
+                }
 
                 ctx.fillText(
                     token.value,
                     currentX,
                     currentY
                 );
-
                 currentX += width;
-
                 break;
             }
 
@@ -67,8 +81,34 @@ export function drawDialogueText(
                 currentColor = defaultColor;
                 break;
 
+            case "size":
+                currentSize = token.value;
+                break;
+
+            case "endsize":
+                currentSize = defaultSize;
+                break;
+
+            case "outline":
+                currentOutline = token.value;
+                break;
+
+            case "endoutline":
+                currentOutline = null;
+                break;
+
+            case "alpha":
+                currentAlpha = token.value;
+                break;
+
+            case "endalpha":
+                currentAlpha = defaultAlpha;
+                break;
+
         }
 
     }
+
+    ctx.globalAlpha = 1;
 
 }
