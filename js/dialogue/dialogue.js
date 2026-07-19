@@ -25,7 +25,7 @@ import {
     getTypingText,
     finishTyping,
     isTypingFinished
-} from "../typing/typingManager.js";
+} from "./typingManager.js";
 
 export const dialogue = {
 
