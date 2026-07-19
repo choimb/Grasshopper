@@ -10,7 +10,7 @@ export const typing = {
     index:0,
 
     frame:0,
-    speed:2,
+    speed:1,
 
     finished:true
 };

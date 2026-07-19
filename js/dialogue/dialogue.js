@@ -22,7 +22,9 @@ import {
 import {
     startTyping,
     updateTyping,
-    getTypingText
+    getTypingText,
+    finishTyping,
+    isTypingFinished
 } from "../typing/typingManager.js";
 
 export const dialogue = {
@@ -46,6 +48,11 @@ export function openDialogue(npc){
 }
 
 export function nextDialogue(){
+    if(!isTypingFinished()){
+        finishTyping();
+        return;
+    }
+
     dialogue.currentLine++;
 
     // 마지막 대사였다면 종료
