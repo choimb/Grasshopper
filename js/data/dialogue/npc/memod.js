@@ -9,7 +9,7 @@ export const memodDialogue = {
         {
             speaker:"npc",
             emotion:"normal",
-            text:"[speed=0.5]아 졸려"
+            text:"[speed=0.1]아 졸려"
         },
         {
             speaker:"npc",
