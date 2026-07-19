@@ -14,7 +14,7 @@ export const digitalBreadDialogue = {
         {
             speaker:"npc",
             emotion:"angry",
-            text:"제발 그런 말 좀 [wait=20][speed=0.1]하 지 마."
+            text:"제발 그런 말 좀 [wait=20][speed=0.1][outline=black]하 지 마."
         }
 
 
