@@ -164,11 +164,13 @@ export function drawDialogue(ctx, canvas){
             "▼",
             UILayout.dialogue.x +
             UILayout.dialogue.width -
-            UILayout.dialogue.arrowMarginRight,
+            UILayout.dialogue.arrowMarginRight +
+            UILayout.dialogue.arrowOffsetX,
 
             dialogueY +
             UILayout.dialogue.height -
             UILayout.dialogue.arrowMarginBottom +
+            UILayout.dialogue.arrowOffsetY +
             bounce
         );
 
