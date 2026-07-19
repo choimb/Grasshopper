@@ -8,9 +8,12 @@ export const typing = {
     visibleText:"",
 
     index:0,
+    tagBuffer:"",
 
     frame:0,
     speed:1,
+
+    waitFrame:0,
 
     finished:true
 };
@@ -25,6 +28,9 @@ export function startTyping(text){
     typing.index = 0;
     typing.frame = 0;
 
+    typing.tagBuffer = "";
+    typing.waitFrame = 0;
+
     typing.finished = false;
 }
 
@@ -34,19 +40,55 @@ export function updateTyping(){
 
     if(typing.finished) return;
 
+    if(typing.waitFrame > 0){
+    typing.waitFrame--;
+    return;
+    }
+
     typing.frame++;
 
     if(typing.frame < typing.speed) return;
 
     typing.frame = 0;
 
-    typing.index++;
+    const char = typing.fullText[typing.index];
 
-    typing.visibleText =
-        typing.fullText.substring(
-            0,
-            typing.index
-        );
+    if(char === "["){
+        typing.tagBuffer = "";
+        typing.index++;
+
+        while(
+            typing.index < typing.fullText.length &&
+            typing.fullText[typing.index] !== "]"
+        ){
+
+            typing.tagBuffer +=
+                typing.fullText[typing.index];
+
+            typing.index++;
+        }
+
+        // ] 건너뛰기
+        typing.index++;
+
+        // wait 처리
+        if(typing.tagBuffer.startsWith("wait=")){
+
+            const value =
+                Number(
+                    typing.tagBuffer.substring(5)
+                );
+
+            if(!isNaN(value)){
+                typing.waitFrame = value;
+            }
+        }
+    }else{
+
+        typing.visibleText += char;
+        typing.index++;
+
+    }
 
     if(
         typing.index >=
