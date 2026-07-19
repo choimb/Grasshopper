@@ -24,9 +24,6 @@ export function drawDialogueText(
 
     let currentOutline = null;
 
-    const defaultColor = "#222";
-    let currentColor = defaultColor;
-
     ctx.fillStyle = currentColor;
 
     for(const token of tokens){
