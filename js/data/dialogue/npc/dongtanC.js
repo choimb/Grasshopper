@@ -9,7 +9,7 @@ export const dongtanCDialogue = {
         {
             speaker:"npc",
             emotion:"normal",
-            text:"그대에게 밀키스를 바칩니다. 저와 결혼해주시겠어요?"
+            text:"그대에게 밀키스를 바칩니다. [wait=30] 저와 결혼해주시겠어요?"
         },
         {
             speaker:"player",
