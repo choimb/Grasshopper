@@ -99,12 +99,15 @@ export function updateTyping(){
 
 }
 
+function removeTags(text){
+    return text.replace(/\[.*?\]/g, "");
+}
 
 // 즉시 전부 출력
 export function finishTyping(){
 
     typing.visibleText =
-        typing.fullText;
+        removeTags(typing.fullText);
 
     typing.index =
         typing.fullText.length;
