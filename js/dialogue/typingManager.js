@@ -10,6 +10,7 @@ export const typing = {
     tokens:[],
 
     visibleText:"",
+    visibleTokens:[],
 
     index:0,
     tagBuffer:"",
@@ -31,6 +32,7 @@ export function startTyping(text){
     typing.tokens = parseText(text);
 
     typing.visibleText = "";
+    typing.visibleTokens = [];
 
     typing.timer = 0;
     typing.index = 0;
@@ -77,15 +79,18 @@ function processNextToken(){
 
         case "text":
             typing.visibleText += token.value;
+            typing.visibleTokens.push(token);
             typing.index++;
             break;
 
         case "wait":
+            typing.visibleTokens.push(token);
             typing.waitFrame = token.value;
             typing.index++;
             break;
 
         case "speed":
+            typing.visibleTokens.push(token);
             if(token.value > 0){
                 typing.speed = token.value;
             }
@@ -93,9 +98,10 @@ function processNextToken(){
             break;
 
         default:
+            typing.visibleTokens.push(token);
             typing.index++;
             break;
-    }
+            }
 
     if(
         typing.index >=
@@ -114,11 +120,11 @@ function removeTags(text){
 // 즉시 전부 출력
 export function finishTyping(){
 
-    typing.visibleText =
-        removeTags(typing.fullText);
+    typing.visibleText = removeTags(typing.fullText);
 
-    typing.index =
-        typing.fullText.length;
+    typing.visibleTokens = [...typing.tokens];
+
+    typing.index = typing.tokens.length;
 
     typing.finished = true;
 }
@@ -126,15 +132,15 @@ export function finishTyping(){
 
 // 현재 출력 문자열
 export function getTypingText(){
-
     return typing.visibleText;
-
 }
 
 
 // 출력 완료 여부
 export function isTypingFinished(){
-
     return typing.finished;
+}
 
+export function getVisibleTokens(){
+    return typing.visibleTokens;
 }
