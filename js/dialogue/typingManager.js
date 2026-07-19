@@ -2,15 +2,20 @@
 // Typing Manager
 // =====================================
 
+import { parseText } from "./textParser.js";
+
 export const typing = {
 
     fullText:"",
+    tokens:[],
+
     visibleText:"",
 
     index:0,
     tagBuffer:"",
 
-    frame:0,
+    timer:0,
+    defaultSpeed:1,
     speed:1,
 
     waitFrame:0,
@@ -23,10 +28,14 @@ export const typing = {
 export function startTyping(text){
 
     typing.fullText = text;
+    typing.tokens = parseText(text);
+
     typing.visibleText = "";
 
+    typing.timer = 0;
     typing.index = 0;
-    typing.frame = 0;
+
+    typing.speed = typing.defaultSpeed;
 
     typing.tagBuffer = "";
     typing.waitFrame = 0;
@@ -45,54 +54,52 @@ export function updateTyping(){
     return;
     }
 
-    typing.frame++;
+    typing.timer += typing.speed;
 
-    if(typing.frame < typing.speed) return;
+    while(typing.timer >= 1){
+        typing.timer--;
+        processNextToken();
+        if(typing.finished){
+            break;
+        }
+    }
+}
 
-    typing.frame = 0;
+function processNextToken(){
+    const token = typing.tokens[typing.index];
 
-    const char = typing.fullText[typing.index];
+    if(!token){
+        typing.finished = true;
+        return;
+    }
 
-    if(char === "["){
-        typing.tagBuffer = "";
-        typing.index++;
+    switch(token.type){
 
-        while(
-            typing.index < typing.fullText.length &&
-            typing.fullText[typing.index] !== "]"
-        ){
-
-            typing.tagBuffer +=
-                typing.fullText[typing.index];
-
+        case "text":
+            typing.visibleText += token.value;
             typing.index++;
-        }
+            break;
 
-        // ] 건너뛰기
-        typing.index++;
+        case "wait":
+            typing.waitFrame = token.value;
+            typing.index++;
+            break;
 
-        // wait 처리
-        if(typing.tagBuffer.startsWith("wait=")){
-
-            const value =
-                Number(
-                    typing.tagBuffer.substring(5)
-                );
-
-            if(!isNaN(value)){
-                typing.waitFrame = value;
+        case "speed":
+            if(token.value > 0){
+                typing.speed = token.value;
             }
-        }
-    }else{
+            typing.index++;
+            break;
 
-        typing.visibleText += char;
-        typing.index++;
-
+        default:
+            typing.index++;
+            break;
     }
 
     if(
         typing.index >=
-        typing.fullText.length
+        typing.tokens.length
     ){
         typing.finished = true;
     }
@@ -102,6 +109,7 @@ export function updateTyping(){
 function removeTags(text){
     return text.replace(/\[.*?\]/g, "");
 }
+
 
 // 즉시 전부 출력
 export function finishTyping(){

@@ -18,12 +18,12 @@ export const ParkthunderDialogue = {
         },
         {
             speaker:"none",
-            text:"그리고 박썬더키라노스케는 어디선가 활을 꺼내 들었다..."
+            text:"그리고 박썬더키라노스케는 어디선가 [speed=0.5]활을 꺼내 들었다..."
         },
         {
             speaker:"npc",
             emotion:"smile",
-            text:"주몽의 마음이 되어야 해."
+            text:"주몽의 마음이[wait=10] 되어야[wait=10] 해."
         }
     ]
 
