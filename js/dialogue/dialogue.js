@@ -19,6 +19,11 @@ import {
     getCurrentDialogue,
     getDialogueLength
 } from "./dialogueDirector.js";
+import {
+    startTyping,
+    updateTyping,
+    getTypingText
+} from "../typing/typingManager.js";
 
 export const dialogue = {
 
@@ -35,6 +40,9 @@ export function openDialogue(npc){
     dialogue.currentLine = 0;
 
     startDialogue(npc);
+    startTyping(
+        getCurrentDialogue(0).text
+    );
 }
 
 export function nextDialogue(){
@@ -52,6 +60,11 @@ export function nextDialogue(){
     changeDialogue(
         dialogue.currentLine,
         dialogue.currentNPC
+    );
+    startTyping(
+        getCurrentDialogue(
+            dialogue.currentLine
+        ).text
     );
 }
 
@@ -74,6 +87,7 @@ export function drawDialogue(ctx, canvas){
     const ui = getUITheme();
 
     drawPortraits(ctx, canvas);
+    updateTyping();
 
     const dialogueY = canvas.height - UILayout.dialogue.height - UILayout.dialogue.bottom;
 
@@ -122,7 +136,7 @@ export function drawDialogue(ctx, canvas){
     ctx.font = "20px sans-serif";
 
     ctx.fillText(
-        currentDialogue.text,
+        getTypingText(),
         UILayout.dialogue.textX,
         dialogueY + UILayout.dialogue.textY
     );
