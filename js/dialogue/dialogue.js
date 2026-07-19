@@ -31,7 +31,9 @@ export const dialogue = {
 
     isOpen:false,
     currentNPC:null,
-    currentLine:0
+    currentLine:0,
+
+    arrowFrame:0
 
 };
 
@@ -95,6 +97,7 @@ export function drawDialogue(ctx, canvas){
 
     drawPortraits(ctx, canvas);
     updateTyping();
+    dialogue.arrowFrame++;
 
     const dialogueY = canvas.height - UILayout.dialogue.height - UILayout.dialogue.bottom;
 
@@ -129,8 +132,7 @@ export function drawDialogue(ctx, canvas){
     case "none":
         speakerName = "";
         break;
-
-}
+    }
 
     ctx.fillText(
         speakerName,
@@ -147,4 +149,29 @@ export function drawDialogue(ctx, canvas){
         UILayout.dialogue.textX,
         dialogueY + UILayout.dialogue.textY
     );
+
+        // ▼ 표시
+    if(isTypingFinished()){
+
+        const bounce =
+            Math.sin(dialogue.arrowFrame * 0.12) * 3;
+
+        ctx.font = `${UILayout.dialogue.arrowSize}px sans-serif`;
+        ctx.fillStyle = "#333";
+        ctx.textAlign = "center";
+
+        ctx.fillText(
+            "▼",
+            UILayout.dialogue.x +
+            UILayout.dialogue.width -
+            UILayout.dialogue.arrowMarginRight,
+
+            dialogueY +
+            UILayout.dialogue.height -
+            UILayout.dialogue.arrowMarginBottom +
+            bounce
+        );
+
+        ctx.textAlign = "left";
+    }
 }

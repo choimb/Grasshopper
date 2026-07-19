@@ -22,7 +22,8 @@ export const UILayout = {
         nameY:70,
         textY:110,
         arrowMarginRight:28,
-        arrowMarginBottom:20
+        arrowMarginBottom:20,
+        arrowSize:22
     },
 
     // Interaction Balloon
