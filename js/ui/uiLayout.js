@@ -24,8 +24,8 @@ export const UILayout = {
         arrowMarginRight:28,
         arrowMarginBottom:20,
         arrowSize:22,
-        arrowOffsetX:-12,
-        arrowOffsetY:-6
+        arrowOffsetX:-30,
+        arrowOffsetY:-10
     },
 
     // Interaction Balloon
