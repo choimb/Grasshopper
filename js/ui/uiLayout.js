@@ -18,11 +18,17 @@ export const UILayout = {
         width:760,
         height:180,
         bottom:12,
+
         textX:90,
-        nameY:70,
-        textY:105,
+        nameY:40,
+        textY:80,
+
+        textWidth:610,
+        lineHeight:30,
+
         arrowMarginRight:28,
         arrowMarginBottom:20,
+
         arrowSize:22,
         arrowOffsetX:-30,
         arrowOffsetY:-10

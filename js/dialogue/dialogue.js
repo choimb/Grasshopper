@@ -26,6 +26,7 @@ import {
     finishTyping,
     isTypingFinished
 } from "./typingManager.js";
+import { drawDialogueText } from "../ui/textRenderer.js";
 
 export const dialogue = {
 
@@ -144,10 +145,13 @@ export function drawDialogue(ctx, canvas){
 
     ctx.font = "20px sans-serif";
 
-    ctx.fillText(
+    drawDialogueText(
+        ctx,
         getTypingText(),
         UILayout.dialogue.textX,
-        dialogueY + UILayout.dialogue.textY
+        dialogueY + UILayout.dialogue.textY,
+        UILayout.dialogue.textWidth,
+        UILayout.dialogue.lineHeight
     );
 
         // ▼ 표시
