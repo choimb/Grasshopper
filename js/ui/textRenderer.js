@@ -4,54 +4,70 @@
 
 export function drawDialogueText(
     ctx,
-    text,
+    tokens,
     x,
     y,
     maxWidth,
     lineHeight = 30
 ){
 
-    const paragraphs = text.split("\n");
-
+    let currentX = x;
     let currentY = y;
 
-    for(const paragraph of paragraphs){
+    const defaultColor = "#222";
+    let currentColor = defaultColor;
 
-        let line = "";
+    ctx.fillStyle = currentColor;
 
-        for(const char of paragraph){
+    for(const token of tokens){
 
-            const testLine = line + char;
+        switch(token.type){
 
-            if(
-                ctx.measureText(testLine).width > maxWidth &&
-                line !== ""
-            ){
+            case "text":{
+
+                if(token.value === "\n"){
+                    currentX = x;
+                    currentY += lineHeight;
+                    break;
+                }
+
+                const width =
+                    ctx.measureText(token.value).width;
+
+                if(
+                    currentX + width >
+                    x + maxWidth
+                ){
+
+                    currentX = x;
+                    currentY += lineHeight;
+
+                }
+
+                ctx.fillStyle = currentColor;
 
                 ctx.fillText(
-                    line,
-                    x,
+                    token.value,
+                    currentX,
                     currentY
                 );
 
-                line = char;
-                currentY += lineHeight;
+                currentX += width;
 
-            }else{
-
-                line = testLine;
-
+                break;
             }
 
+            case "color":
+
+                currentColor = token.value;
+                break;
+
+            case "endcolor":
+
+                currentColor = defaultColor;
+                break;
+
         }
-
-        ctx.fillText(
-            line,
-            x,
-            currentY
-        );
-
-        currentY += lineHeight;
 
     }
 
