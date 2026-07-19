@@ -9,7 +9,7 @@ export const busanKALDialogue = {
         {
             speaker:"npc",
             emotion:"normal",
-            text:"여자 50명이 단체로 브왁을 받으면?"
+            text:"여자 50명이[wait=30][wait=30] 단체로 브왁을 받으면?"
         },
 
         {
