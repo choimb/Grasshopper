@@ -22,7 +22,7 @@ import {
 import {
     startTyping,
     updateTyping,
-    getTypingText,
+    getVisibleTokens,
     finishTyping,
     isTypingFinished
 } from "./typingManager.js";
@@ -147,7 +147,7 @@ export function drawDialogue(ctx, canvas){
 
     drawDialogueText(
         ctx,
-        getTypingText(),
+        getVisibleTokens(),
         UILayout.dialogue.textX,
         dialogueY + UILayout.dialogue.textY,
         UILayout.dialogue.textWidth,
