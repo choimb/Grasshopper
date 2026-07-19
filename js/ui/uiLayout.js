@@ -20,7 +20,7 @@ export const UILayout = {
         bottom:12,
         textX:90,
         nameY:70,
-        textY:100,
+        textY:110,
         arrowMarginRight:28,
         arrowMarginBottom:20
     },
