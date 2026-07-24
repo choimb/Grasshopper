@@ -18,7 +18,7 @@ export const ParkthunderDialogue = {
         },
         {
             speaker:"none",
-            text:"그리고 박썬더키라노스케는 어디선가 [speed=4][color=red]활[/color]을 [wait=8][speed=5]꺼내 들었다..."
+            text:"그리고 박썬더키라노스케는 어디선가 [speed=6][color=red]활[/color]을 [wait=9][speed=5]꺼내 들었다..."
         },
         {
             speaker:"npc",
