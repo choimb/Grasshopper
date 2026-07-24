@@ -63,6 +63,35 @@ export function resumeBGM(){
 
 export async function playSE(name){
 
+    if(audioContext.state === "suspended"){
+        await audioContext.resume();
+    }
+
+    // 캐시에 없으면 로드
+    if(!seBuffers[name]){
+
+        seBuffers[name] =
+            await loadAudio(
+                `assets/audio/se/${name}.mp3`
+            );
+
+    }
+
+    const source =
+        audioContext.createBufferSource();
+
+    source.buffer = seBuffers[name];
+
+    const gain =
+        audioContext.createGain();
+
+    gain.gain.value = seVolume;
+
+    source.connect(gain);
+    gain.connect(audioContext.destination);
+
+    source.start();
+
 }
 
 
@@ -104,5 +133,13 @@ export function setVoiceVolume(volume){
 // Internal
 
 async function loadAudio(path){
+
+    const response = await fetch(path);
+
+    const arrayBuffer = await response.arrayBuffer();
+
+    return await audioContext.decodeAudioData(
+        arrayBuffer
+    );
 
 }

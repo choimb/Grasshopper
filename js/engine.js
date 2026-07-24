@@ -25,6 +25,7 @@ import {
     openDialogue,
     nextDialogue
 } from "./dialogue/dialogue.js"
+import { playSE } from "./audio/audioManager.js";
 
 
 import {isKeyPressed} from "./input.js";
@@ -60,6 +61,7 @@ if(
         updateNPCs(player);
 
         if(isKeyPressed("KeyZ")){
+            playSE("click");
             if(dialogue.isOpen){
                 nextDialogue();
             }
