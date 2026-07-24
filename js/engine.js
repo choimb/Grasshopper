@@ -32,12 +32,15 @@ import {drawMap} from "./map.js";
 import {drawCollision} from "./collision.js";
 import {buildObjects, getObjectLayers} from "./object/objectManager.js";
 import {drawRenderer} from "./renderer.js";
+import {playBGM} from "./audio/audioManager.js";
+
+let bgmStarted = false;
 
 export function startEngine(canvas, ctx){
 
     function update(){
 
-//임시 노래
+// 노래
 if(
     !bgmStarted &&
     (
@@ -48,7 +51,7 @@ if(
         isKeyPressed("KeyZ")
     )
 ){
-    bgm.play();
+    playBGM("classroom");
     bgmStarted = true;
 }
 //-----
@@ -113,11 +116,6 @@ if(
     }
 
     loadMap();
-
-    bgm.play().catch(() => {
-    console.log("BGM 대기중");
-    });
-
     gameLoop();
 
 }

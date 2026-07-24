@@ -13,10 +13,6 @@ const ctx = canvas.getContext("2d");
 
 ctx.imageSmoothingEnabled = false;
 
-import { playBGM } from "./audio/audioManager.js";
-
-playBGM("classroom");
-
 // 게임 내부 해상도
 canvas.width = 832;
 canvas.height = 576;
