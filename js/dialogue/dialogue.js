@@ -84,8 +84,7 @@ export function nextDialogue(){
         dialogue.currentLine,
         dialogue.currentNPC
     );
-    const line =
-        getCurrentDialogue(dialogue.currentLine);
+    const line = getCurrentDialogue(dialogue.currentLine);
 
     if(line.speaker === "player"){
         setTypingVoice("player");
@@ -97,11 +96,7 @@ export function nextDialogue(){
         setTypingVoice("none");
     }
 
-    startTyping(
-        getCurrentDialogue(
-            dialogue.currentLine
-        ).text
-    );
+    startTyping(line.text);
 }
 
 export function closeDialogue(){

@@ -3,7 +3,7 @@
 // =====================================
 
 import { parseText } from "./textParser.js";
-import { playVoice } from "../audio/audioManager.js";
+import { playVoice, playSE } from "../audio/audioManager.js";
 
 export const typing = {
 
@@ -172,6 +172,9 @@ export function getVisibleTokens(){
 
 
 export function setTypingVoice(name){
+
+    console.log("setTypingVoice:", name);
+
     typing.voice = name;
 }
 
