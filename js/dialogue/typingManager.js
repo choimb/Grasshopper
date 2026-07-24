@@ -85,6 +85,7 @@ function processNextToken(){
             typing.visibleTokens.push(token);
 
             if(
+                typing.voice !== "none" &&
                 token.value.trim() !== "" &&
                 ![
                     ".",
@@ -112,6 +113,12 @@ function processNextToken(){
             if(token.value > 0){
                 typing.speed = token.value;
             }
+            typing.index++;
+            break;
+
+        case "se":
+            playSE(token.value);
+            typing.visibleTokens.push(token);
             typing.index++;
             break;
 

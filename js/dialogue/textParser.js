@@ -180,6 +180,20 @@ function parseTag(tag){
         };
     }
 
+    // se 시작
+    if(tag === "se"){
+        return{
+            type:"se"
+        };
+    }
+
+    // se 종료
+    if(tag === "/se"){
+        return{
+            type:"endse"
+        };
+    }
+
     // 알 수 없는 태그
     return{
         type:"unknown",

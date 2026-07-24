@@ -46,9 +46,20 @@ export function openDialogue(npc){
     dialogue.currentLine = 0;
 
     startDialogue(npc);
-    setTypingVoice(npc.id);
+    const line = getCurrentDialogue(0);
+
+    if(line.speaker === "player"){
+        setTypingVoice("player");
+    }
+    else if(line.speaker === "npc"){
+        setTypingVoice(npc.id);
+    }
+    else{
+        setTypingVoice("none");
+    }
+
     startTyping(
-        getCurrentDialogue(0).text
+        line.text
     );
 }
 
@@ -82,6 +93,10 @@ export function nextDialogue(){
     else if(line.speaker === "npc"){
         setTypingVoice(dialogue.currentNPC.id);
     }
+    else{
+        setTypingVoice("none");
+    }
+
     startTyping(
         getCurrentDialogue(
             dialogue.currentLine
