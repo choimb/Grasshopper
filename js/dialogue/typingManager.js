@@ -19,7 +19,7 @@ export const typing = {
     tagBuffer:"",
 
     timer:0,
-    defaultSpeed:3,
+    defaultSpeed:4,
     speed:1,
 
     waitFrame:0,
