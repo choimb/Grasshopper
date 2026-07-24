@@ -26,13 +26,6 @@ import {
     nextDialogue
 } from "./dialogue/dialogue.js"
 
-const bgm = new Audio(
-    "assets/audio/bgm/school.mp3"
-);
-let bgmStarted = false;
-bgm.loop = true;
-bgm.volume = 0.4;
-
 
 import {isKeyPressed} from "./input.js";
 import {drawMap} from "./map.js";
@@ -101,7 +94,7 @@ if(
         );
 
         // 개발용
-        //drawCollision(ctx);
+        drawCollision(ctx);
         for(const npc of npcs){
             drawInteraction(ctx, npc);
         }
