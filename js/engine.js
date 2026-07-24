@@ -59,11 +59,11 @@ if(
         updateNPCs(player);
 
         if(isKeyPressed("KeyX")){
-    playVoice("test");
-}
+            playSE("x");
+        }
 
         if(isKeyPressed("KeyZ")){
-            playSE("click");
+            playSE("z");
             if(dialogue.isOpen){
                 nextDialogue();
             }
