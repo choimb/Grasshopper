@@ -81,15 +81,15 @@ export function setBGMVolume(volume){
 
     bgmVolume = volume;
 
-}
-
-export function setBGMVolume(volume){
-
-    bgmVolume = volume;
-
     if(currentBGM){
         currentBGM.volume = volume;
     }
+
+}
+
+export function setSEVolume(volume){
+
+    seVolume = volume;
 
 }
 
