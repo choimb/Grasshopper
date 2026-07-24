@@ -3,6 +3,7 @@
 // =====================================
 
 import { parseText } from "./textParser.js";
+import { playVoice } from "../audio/audioManager.js";
 
 export const typing = {
 
@@ -13,6 +14,8 @@ export const typing = {
     visibleTokens:[],
 
     index:0,
+    voice:"default",
+
     tagBuffer:"",
 
     timer:0,
@@ -80,6 +83,21 @@ function processNextToken(){
         case "text":
             typing.visibleText += token.value;
             typing.visibleTokens.push(token);
+
+            if(
+                token.value.trim() !== "" &&
+                ![
+                    ".",
+                    ",",
+                    "!",
+                    "?",
+                    "…",
+                    "~"
+                ].includes(token.value)
+            ){
+                playVoice(typing.voice);
+            }
+
             typing.index++;
             break;
 
@@ -143,4 +161,13 @@ export function isTypingFinished(){
 
 export function getVisibleTokens(){
     return typing.visibleTokens;
+}
+
+
+export function setTypingVoice(name){
+    typing.voice = name;
+}
+
+export function getTypingVoice(){
+    return typing.voice;
 }

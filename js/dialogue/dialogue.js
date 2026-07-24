@@ -24,7 +24,8 @@ import {
     updateTyping,
     getVisibleTokens,
     finishTyping,
-    isTypingFinished
+    isTypingFinished,
+    setTypingVoice
 } from "./typingManager.js";
 import { drawDialogueText } from "../ui/textRenderer.js";
 
@@ -45,6 +46,7 @@ export function openDialogue(npc){
     dialogue.currentLine = 0;
 
     startDialogue(npc);
+    setTypingVoice(npc.id);
     startTyping(
         getCurrentDialogue(0).text
     );
@@ -71,6 +73,15 @@ export function nextDialogue(){
         dialogue.currentLine,
         dialogue.currentNPC
     );
+    const line =
+        getCurrentDialogue(dialogue.currentLine);
+
+    if(line.speaker === "player"){
+        setTypingVoice("player");
+    }
+    else if(line.speaker === "npc"){
+        setTypingVoice(dialogue.currentNPC.id);
+    }
     startTyping(
         getCurrentDialogue(
             dialogue.currentLine
