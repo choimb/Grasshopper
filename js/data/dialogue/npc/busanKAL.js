@@ -15,7 +15,7 @@ export const busanKALDialogue = {
         {
             speaker:"npc",
             emotion:"smile",
-            text:"[bold]][speed=0.1][size=30]오십보백보"
+            text:"[bold][speed=0.08][size=29]오십보백보"
         }
 
     ]

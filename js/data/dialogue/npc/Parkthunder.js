@@ -23,7 +23,7 @@ export const ParkthunderDialogue = {
         {
             speaker:"npc",
             emotion:"smile",
-            text:"[bold]주몽의 마음이[wait=10] 되어야[wait=10] 해."
+            text:"[wave][bold]주몽의 마음이[wait=10] 되어야[wait=10] 해."
         }
     ]
 
