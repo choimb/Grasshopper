@@ -4,6 +4,15 @@
 
 const audioContext = new AudioContext();
 
+const voiceCount = {
+    player:3,
+    digitalBread:3,
+    memod:3,
+    busanKAL:3,
+    dongtanC:3,
+    Parkthunder:3
+};
+
 
 // BGM
 let currentBGM = null;
@@ -104,11 +113,23 @@ export async function playVoice(name){
         await audioContext.resume();
     }
 
-    if(!voiceBuffers[name]){
+    // 등록된 샘플 개수
+    const count = voiceCount[name] ?? 1;
 
-        voiceBuffers[name] =
+    // 랜덤 번호 선택
+    const index =
+        Math.floor(Math.random() * count) + 1;
+
+    // 실제 파일 이름
+    const fileName =
+        `${name}_${index}`;
+
+    // 캐시에 없으면 로드
+    if(!voiceBuffers[fileName]){
+
+        voiceBuffers[fileName] =
             await loadAudio(
-                `assets/audio/voice/${name}.mp3`
+                `assets/audio/voice/${fileName}.mp3`
             );
 
     }
@@ -116,11 +137,12 @@ export async function playVoice(name){
     const source =
         audioContext.createBufferSource();
 
-    source.buffer = voiceBuffers[name];
+    source.buffer =
+        voiceBuffers[fileName];
 
-    // 랜덤 피치 (동물의 숲 느낌)
+    // 랜덤 피치
     source.playbackRate.value =
-        0.9 + Math.random() * 0.2;
+        0.92 + Math.random() * 0.16;
 
     const gain =
         audioContext.createGain();
