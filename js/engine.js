@@ -25,15 +25,13 @@ import {
     openDialogue,
     nextDialogue
 } from "./dialogue/dialogue.js"
-import { playSE } from "./audio/audioManager.js";
-
 
 import {isKeyPressed} from "./input.js";
 import {drawMap} from "./map.js";
 import {drawCollision} from "./collision.js";
 import {buildObjects, getObjectLayers} from "./object/objectManager.js";
 import {drawRenderer} from "./renderer.js";
-import {playBGM} from "./audio/audioManager.js";
+import {playBGM, playSE, playVoice} from "./audio/audioManager.js";
 
 let bgmStarted = false;
 
@@ -59,6 +57,10 @@ if(
 
         updatePlayer(canvas);
         updateNPCs(player);
+
+        if(isKeyPressed("KeyX")){
+    playVoice("test");
+}
 
         if(isKeyPressed("KeyZ")){
             playSE("click");

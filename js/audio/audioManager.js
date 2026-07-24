@@ -100,6 +100,38 @@ export async function playSE(name){
 
 export async function playVoice(name){
 
+    if(audioContext.state === "suspended"){
+        await audioContext.resume();
+    }
+
+    if(!voiceBuffers[name]){
+
+        voiceBuffers[name] =
+            await loadAudio(
+                `assets/audio/voice/${name}.mp3`
+            );
+
+    }
+
+    const source =
+        audioContext.createBufferSource();
+
+    source.buffer = voiceBuffers[name];
+
+    // 랜덤 피치 (동물의 숲 느낌)
+    source.playbackRate.value =
+        0.9 + Math.random() * 0.2;
+
+    const gain =
+        audioContext.createGain();
+
+    gain.gain.value = voiceVolume;
+
+    source.connect(gain);
+    gain.connect(audioContext.destination);
+
+    source.start();
+
 }
 
 
