@@ -19,7 +19,7 @@ export const typing = {
     tagBuffer:"",
 
     timer:0,
-    defaultSpeed:1,
+    defaultSpeed:3,
     speed:1,
 
     waitFrame:0,
@@ -59,10 +59,10 @@ export function updateTyping(){
     return;
     }
 
-    typing.timer += typing.speed;
+    typing.timer ++;
 
-    while(typing.timer >= 1){
-        typing.timer--;
+    while(typing.timer >= typing.speed){
+        typing.timer -= typing.speed;
         processNextToken();
         if(typing.finished){
             break;
