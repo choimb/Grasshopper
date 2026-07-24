@@ -14,7 +14,7 @@ export const ParkthunderDialogue = {
         {
             speaker:"npc",
             emotion:"normal",
-            text:"여자 빼고 다 쏴버릴거임"
+            text:"[shake]여자 빼고 다 쏴버릴거임"
         },
         {
             speaker:"none",
@@ -23,7 +23,7 @@ export const ParkthunderDialogue = {
         {
             speaker:"npc",
             emotion:"smile",
-            text:"[outline=black]주몽의 마음이[wait=10] 되어야[wait=10] 해."
+            text:"[bold]주몽의 마음이[wait=10] 되어야[wait=10] 해."
         }
     ]
 

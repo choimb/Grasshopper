@@ -151,6 +151,34 @@ function parseTag(tag){
         };
     }
 
+    // bold 시작
+    if(tag === "bold"){
+        return{
+            type:"bold"
+        };
+    }
+
+    // bold 종료
+    if(tag === "/bold"){
+        return{
+            type:"endbold"
+        };
+    }
+
+    // ruby 시작
+    if(tag.startsWith("ruby=")){
+        return{
+            type:"ruby",
+            value:tag.substring(5)
+        };
+    }
+
+    // ruby 종료
+    if(tag === "/ruby"){
+        return{
+            type:"endruby"
+        };
+    }
 
     // 알 수 없는 태그
     return{

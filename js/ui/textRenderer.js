@@ -23,6 +23,9 @@ export function drawDialogueText(
     let currentAlpha = defaultAlpha;
 
     let currentOutline = null;
+    let currentBold = false;
+    let currentShake = false;
+    let currentWave = false;
 
     ctx.fillStyle = currentColor;
 
@@ -49,20 +52,43 @@ export function drawDialogueText(
                 ctx.globalAlpha = currentAlpha;
                 ctx.fillStyle = currentColor;
 
+                let drawX = currentX;
+                let drawY = currentY;
+
+                if(currentShake){
+                    drawX += Math.random()*2-1;
+                    drawY += Math.random()*2-1;
+                }
+
+                if(currentWave){
+                    drawY += Math.sin(
+                        performance.now()*0.01 +
+                        currentX*0.08
+                    )*3;
+                }
+
                 if(currentOutline){
                     ctx.strokeStyle = currentOutline;
                     ctx.lineWidth = 3;
                     ctx.strokeText(
                         token.value,
-                        currentX,
-                        currentY
+                        drawX,
+                        drawY
+                    );
+                }
+
+                if(currentBold){
+                    ctx.fillText(
+                        token.value,
+                        drawX + 1,
+                        drawY
                     );
                 }
 
                 ctx.fillText(
                     token.value,
-                    currentX,
-                    currentY
+                    drawX,
+                    drawY
                 );
                 currentX += width;
                 break;
@@ -100,6 +126,30 @@ export function drawDialogueText(
 
             case "endalpha":
                 currentAlpha = defaultAlpha;
+                break;
+
+            case "bold":
+                currentBold = true;
+                break;
+
+            case "endbold":
+                currentBold = false;
+                break;
+
+            case "shake":
+                currentShake = true;
+                break;
+
+            case "endshake":
+                currentShake = false;
+                break;
+
+            case "wave":
+                currentWave = true;
+                break;
+
+            case "endwave":
+                currentWave = false;
                 break;
 
         }
