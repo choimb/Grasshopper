@@ -18,6 +18,7 @@ const voiceCount = {
 let currentBGM = null;
 let currentBGMName = "";
 let currentMapBGM = "";
+let bgmFadeTime = 800; // ms
 
 // SE Cache
 const seBuffers = {};
@@ -34,20 +35,61 @@ let voiceVolume = 1;
 // =====================================
 // BGM
 
-export function playBGM(name){
+export async function playBGM(name, transition = "instant"){
     currentBGMName = name;
-    stopBGM();
+
+    if(transition === "instant"){
+        stopBGM();
+
+        currentBGM = new Audio(
+            `assets/audio/bgm/${name}.mp3`
+        );
+
+        currentBGM.loop = true;
+        currentBGM.volume = bgmVolume;
+
+        currentBGM.play().catch(error=>{
+            console.warn(
+                "BGM 재생 실패:",
+                error
+            );
+        });
+
+        return;
+    }
+
+    // Fade
+
+    if(currentBGM){
+
+        await fadeAudio(
+            currentBGM,
+            currentBGM.volume / bgmVolume,
+            0,
+            bgmFadeTime
+        );
+
+        currentBGM.pause();
+        currentBGM = null;
+
+    }
 
     currentBGM = new Audio(
         `assets/audio/bgm/${name}.mp3`
     );
 
     currentBGM.loop = true;
-    currentBGM.volume = bgmVolume;
+    currentBGM.volume = 0;
 
-    currentBGM.play().catch(error=>{
-        console.warn("BGM 재생 실패:", error);
-    });
+    await currentBGM.play();
+
+    await fadeAudio(
+        currentBGM,
+        0,
+        1,
+        bgmFadeTime
+    );
+
 }
 
 export function stopBGM(){
@@ -57,6 +99,7 @@ export function stopBGM(){
     currentBGM.currentTime = 0;
 
     currentBGM = null;
+    currentBGMName = "";
 }
 
 export function pauseBGM(){
@@ -73,9 +116,12 @@ export function setMapBGM(name){
     currentMapBGM = name;
 }
 
-export function playMapBGM(){
+export function playMapBGM(transition = "instant"){
     if(currentMapBGM){
-        playBGM(currentMapBGM);
+        playBGM(
+            currentMapBGM,
+            transition
+        );
     }
 }
 
@@ -192,6 +238,50 @@ export function setSEVolume(volume){
 export function setVoiceVolume(volume){
 
     voiceVolume = volume;
+
+}
+
+
+// =====================================
+
+export function setBGMFadeTime(ms){
+    bgmFadeTime = ms;
+}
+
+function fadeAudio(audio, from, to, duration){
+    return new Promise(resolve=>{
+
+        if(!audio){
+            resolve();
+            return;
+        }
+
+        const start = performance.now();
+
+        function update(now){
+
+            const t =
+                Math.min(
+                    (now - start) / duration,
+                    1
+                );
+
+            audio.volume =
+                (from + (to - from) * t)
+                * bgmVolume;
+
+            if(t < 1){
+                requestAnimationFrame(update);
+            }
+            else{
+                resolve();
+            }
+
+        }
+
+        requestAnimationFrame(update);
+
+    });
 
 }
 
