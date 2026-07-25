@@ -181,9 +181,10 @@ function parseTag(tag){
     }
 
     // se 시작
-    if(tag === "se"){
+    if(tag.startsWith("se=")){
         return{
-            type:"se"
+            type:"se",
+            value:tag.substring(3)
         };
     }
 
@@ -193,6 +194,20 @@ function parseTag(tag){
             type:"endse"
         };
     }
+
+    // BGM
+    if(tag.startsWith("bgm=")){
+        return{
+            type:"bgm",
+        value:tag.substring(4)
+        };
+    }
+ 
+   if(tag === "mapbgm"){
+       return{
+           type:"mapbgm"
+       };
+   }
 
     // 알 수 없는 태그
     return{

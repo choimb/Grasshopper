@@ -2,11 +2,7 @@
 // Engine
 // =====================================
 
-import {
-    player,
-    updatePlayer,
-    getPlayerEntity
-} from "./player.js";
+import {player, updatePlayer, getPlayerEntity} from "./player.js";
 import {
     updateNPCs,
     drawInteraction,
@@ -14,24 +10,24 @@ import {
     getFocusedNPC
 } from "./npc/npc.js";
 
-import {
-    npcs,
-    buildNPCs
-} from "./npc/npcManager.js";
-
-import {
-    dialogue,
-    drawDialogue,
-    openDialogue,
-    nextDialogue
-} from "./dialogue/dialogue.js"
-
+import {npcs, buildNPCs} from "./npc/npcManager.js";
+import {dialogue, drawDialogue, openDialogue, nextDialogue} from "./dialogue/dialogue.js"
 import {isKeyPressed} from "./input.js";
 import {drawMap} from "./map.js";
 import {drawCollision} from "./collision.js";
 import {buildObjects, getObjectLayers} from "./object/objectManager.js";
 import {drawRenderer} from "./renderer.js";
-import {playBGM, playSE, playVoice} from "./audio/audioManager.js";
+
+import {
+    playBGM,
+    playSE,
+    playVoice,
+    setMapBGM,
+    playMapBGM,
+    setBGMVolume,
+    setSEVolume,
+    setVoiceVolume
+} from "./audio/audioManager.js";
 
 let bgmStarted = false;
 
@@ -50,7 +46,7 @@ if(
         isKeyPressed("KeyZ")
     )
 ){
-    playBGM("classroom");
+    playMapBGM();
     bgmStarted = true;
 }
 //-----
@@ -117,7 +113,13 @@ if(
     function loadMap(){
         buildObjects();
         buildNPCs();
+
+        setMapBGM("classroom");
     }
+
+    setBGMVolume(0.4);
+    setSEVolume(0.7);
+    setVoiceVolume(0.9);
 
     loadMap();
     gameLoop();

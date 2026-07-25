@@ -3,7 +3,7 @@
 // =====================================
 
 import { parseText } from "./textParser.js";
-import { playVoice, playSE } from "../audio/audioManager.js";
+import { playVoice, playSE, playBGM, playMapBGM } from "../audio/audioManager.js";
 
 export const typing = {
 
@@ -122,6 +122,18 @@ function processNextToken(){
             typing.index++;
             break;
 
+        case "bgm":
+            playBGM(token.value);
+            typing.visibleTokens.push(token);
+            typing.index++;
+            break;
+
+        case "mapbgm":
+            playMapBGM();
+            typing.visibleTokens.push(token);
+            typing.index++;
+            break;
+
         default:
             typing.visibleTokens.push(token);
             typing.index++;
@@ -172,9 +184,6 @@ export function getVisibleTokens(){
 
 
 export function setTypingVoice(name){
-
-    console.log("setTypingVoice:", name);
-
     typing.voice = name;
 }
 

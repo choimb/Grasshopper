@@ -16,6 +16,8 @@ const voiceCount = {
 
 // BGM
 let currentBGM = null;
+let currentBGMName = "";
+let currentMapBGM = "";
 
 // SE Cache
 const seBuffers = {};
@@ -33,6 +35,7 @@ let voiceVolume = 1;
 // BGM
 
 export function playBGM(name){
+    currentBGMName = name;
     stopBGM();
 
     currentBGM = new Audio(
@@ -64,6 +67,16 @@ export function pauseBGM(){
 export function resumeBGM(){
     if(!currentBGM) return;
     currentBGM.play();
+}
+
+export function setMapBGM(name){
+    currentMapBGM = name;
+}
+
+export function playMapBGM(){
+    if(currentMapBGM){
+        playBGM(currentMapBGM);
+    }
 }
 
 
