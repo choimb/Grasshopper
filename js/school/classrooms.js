@@ -8,6 +8,7 @@
 function createClassroom({
     grade,
     className,
+    bgm = null,
     spawn,
     objects = [],
     npcs = []
@@ -16,6 +17,7 @@ function createClassroom({
     return{
         grade,
         className,
+        bgm,
         spawn,
         objects,
         npcs
@@ -28,6 +30,7 @@ export const classrooms = {
     "3A":createClassroom({
         grade:3,
         className:"A",
+        bgm:"classroom",
         spawn:{
             gridX:4,
             gridY:6

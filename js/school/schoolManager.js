@@ -3,6 +3,10 @@
 // =====================================
 
 import { classrooms } from "./classrooms.js";
+import {
+    setMapBGM,
+    playMapBGM
+} from "../audio/audioManager.js";
 
 let currentClassroom = classrooms["3A"];
 
@@ -15,10 +19,20 @@ export function getCurrentClassroom(){
 export function loadClassroom(classroomId){
 
     if(classrooms[classroomId]){
-        currentClassroom = classrooms[classroomId];
+        currentClassroom =
+            classrooms[classroomId];
+
+        setMapBGM(
+            currentClassroom.bgm
+        );
+
+        playMapBGM("fade");
     }
     else{
-        console.warn("존재하지 않는 교실 :", classroomId);
-    }
 
+        console.warn(
+            "존재하지 않는 교실 :",
+            classroomId
+        );
+    }
 }

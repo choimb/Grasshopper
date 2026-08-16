@@ -39,6 +39,10 @@ export const memodDialogue = {
             speaker:"npc",
             emotion:"smile",
             text:"[wave]아싸~"
+        },
+        {
+            command:"mapBGM",
+            transition:"fade"
         }
 
     ]

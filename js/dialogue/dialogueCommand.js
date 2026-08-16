@@ -4,7 +4,8 @@
 
 import {
     playBGM,
-    playSE
+    playSE,
+    playMapBGM
 } from "../audio/audioManager.js";
 
 export function executeCommand(data){
@@ -18,6 +19,12 @@ export function executeCommand(data){
             playBGM(
                 data.name,
                 data.transition ?? "instant"
+            );
+        break;
+
+        case "mapBGM":
+            playMapBGM(
+                data.transition ?? "fade"
             );
         break;
 
