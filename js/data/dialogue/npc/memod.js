@@ -13,7 +13,7 @@ export const memodDialogue = {
         },
         {
             command:"se",
-            name:"clink"
+            name:"click"
         },
         {
             command:"bgm",
