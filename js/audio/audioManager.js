@@ -19,6 +19,7 @@ let currentBGM = null;
 let currentBGMName = "";
 let currentMapBGM = "";
 let bgmFadeTime = 800; // ms
+let bgmTransitionId = 0;
 
 // SE Cache
 const seBuffers = {};
@@ -36,22 +37,25 @@ let voiceVolume = 1;
 // BGM
 
 export async function playBGM(name, transition = "instant"){
+    const transitionId =
+        ++bgmTransitionId;
     currentBGMName = name;
 
     // =====================================
     // Instant
     if(transition === "instant"){
         stopBGM();
-        currentBGM = new Audio(
-            `assets/audio/bgm/${name}.mp3`
-        );
+        const audio =
+            new Audio(
+                `assets/audio/bgm/${name}.mp3`
+            );
 
-        currentBGM.loop = true;
-        currentBGM.volume = bgmVolume;
-
-        currentBGM.play().catch(error=>{
+        audio.loop = true;
+        audio.volume = bgmVolume;
+        currentBGM = audio;
+        audio.play().catch(error=>{
             console.warn(
-                "BGM 재생 실패:",
+                `BGM 재생 실패: ${name}`,
                 error
             );
         });
@@ -60,29 +64,53 @@ export async function playBGM(name, transition = "instant"){
 
     // =====================================
     // Fade / Crossfade
-    const oldBGM = currentBGM;
-    const newBGM = new Audio(
-        `assets/audio/bgm/${name}.mp3`
-    );
+    const oldBGM =
+        currentBGM;
+
+    // 새 BGM
+    const newBGM =
+        new Audio(
+            `assets/audio/bgm/${name}.mp3`
+        );
 
     newBGM.loop = true;
     newBGM.volume = 0;
 
-    // 사용자 입력 직후 재생 시작
+    // =====================================
+    // 새 BGM 재생
     try{
+        console.log(
+            `BGM 재생 시도: ${name}`
+        );
         await newBGM.play();
+        console.log(
+            `BGM 재생 성공: ${name}`
+        );
     }
     catch(error){
-        console.warn(
+        console.error(
             `BGM 재생 실패: ${name}`,
             error
         );
         return;
     }
 
-    currentBGM = newBGM;
+    // 이미 더 최신 전환이 시작됐다면
+    if(transitionId !== bgmTransitionId){
 
+        newBGM.pause();
+
+        return;
+    }
+
+    // 현재 BGM 갱신
+    currentBGM =
+        newBGM;
+
+    // =====================================
+    // Crossfade
     if(oldBGM){
+
         await Promise.all([
 
             fadeAudio(
@@ -101,6 +129,14 @@ export async function playBGM(name, transition = "instant"){
 
         ]);
 
+        // 더 최신 전환이 생겼다면
+        if(
+            transitionId !==
+            bgmTransitionId
+        ){
+            return;
+        }
+
         oldBGM.pause();
         oldBGM.currentTime = 0;
     }
@@ -115,11 +151,15 @@ export async function playBGM(name, transition = "instant"){
 }
 
 export function stopBGM(){
-    if(!currentBGM) return;
+    bgmTransitionId++;
 
+    if(!currentBGM){
+        currentBGMName = "";
+        return;
+    }
     currentBGM.pause();
     currentBGM.currentTime = 0;
-
+    currentBGM.volume = 0;
     currentBGM = null;
     currentBGMName = "";
 }
@@ -279,7 +319,17 @@ function fadeAudio(audio, from, to, duration){
         }
 
         const start = performance.now();
+
+        // 안전한 범위로 제한
+        from = Math.max(0, Math.min(1, from));
+        to = Math.max(0, Math.min(1, to));
+
         function update(now){
+
+            if(!audio){
+                resolve();
+                return;
+            }
 
             const t =
                 Math.min(
@@ -287,13 +337,22 @@ function fadeAudio(audio, from, to, duration){
                     1
                 );
 
-            audio.volume =
+            const volume =
                 from + (to - from) * t;
+
+            // 최종적으로도 0~1 밖으로 나가지 않게
+            audio.volume =
+                Math.max(
+                    0,
+                    Math.min(1, volume)
+                );
 
             if(t < 1){
                 requestAnimationFrame(update);
             }
             else{
+                // 마지막 값 확정
+                audio.volume = to;
                 resolve();
             }
         }
