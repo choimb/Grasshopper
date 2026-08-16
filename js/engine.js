@@ -97,7 +97,7 @@ if(
         );
 
         // 개발용
-        drawCollision(ctx);
+        //drawCollision(ctx);
         for(const npc of npcs){
             drawInteraction(ctx, npc);
         }
