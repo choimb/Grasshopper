@@ -12,6 +12,15 @@ export const memodDialogue = {
             text:"[speed=6][alpha=0.3]아 졸려"
         },
         {
+            command:"se",
+            name:"clink"
+        },
+        {
+            command:"bgm",
+            name:"serious",
+            transition:"fade"
+        },
+        {
             speaker:"npc",
             emotion:"smile",
             text:"어? 윤도다"

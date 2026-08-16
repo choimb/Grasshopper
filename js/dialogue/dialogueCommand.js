@@ -2,6 +2,11 @@
 // Dialogue Command
 // =====================================
 
+import {
+    playBGM,
+    playSE
+} from "../audio/audioManager.js";
+
 export function executeCommand(data){
     switch(data.command){
 
@@ -10,11 +15,14 @@ export function executeCommand(data){
         break;
 
         case "bgm":
-            console.log("BGM", data.name);
+            playBGM(
+                data.name,
+                data.transition ?? "instant"
+            );
         break;
 
         case "se":
-            console.log("SE", data.name);
+            playSE(data.name);
         break;
 
         case "shake":

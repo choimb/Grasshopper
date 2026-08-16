@@ -25,9 +25,10 @@ import {
     getVisibleTokens,
     finishTyping,
     isTypingFinished,
-    setTypingVoice
+    setTypingVoice,
 } from "./typingManager.js";
 import { drawDialogueText } from "../ui/textRenderer.js";
+import { executeCommand } from "./dialogueCommand.js";
 
 export const dialogue = {
 
@@ -39,6 +40,50 @@ export const dialogue = {
 
 };
 
+function prepareDialogueLine(){
+
+    while(
+        dialogue.currentLine <
+        getDialogueLength()
+    ){
+
+        const line =
+            getCurrentDialogue(
+                dialogue.currentLine
+            );
+
+        // 명령 줄
+        if(line.command){
+            executeCommand(line);
+            dialogue.currentLine++;
+            continue;
+        }
+
+        // 일반 대사
+        changeDialogue(
+            dialogue.currentLine,
+            dialogue.currentNPC
+        );
+
+        if(line.speaker === "player"){
+            setTypingVoice("player");
+        }
+        else if(line.speaker === "npc"){
+            setTypingVoice(
+                dialogue.currentNPC.id
+            );
+        }
+        else{
+            setTypingVoice("none");
+        }
+
+        startTyping(line.text);
+        return true;
+    }
+
+    return false;
+}
+
 export function openDialogue(npc){
 
     dialogue.isOpen = true;
@@ -46,24 +91,14 @@ export function openDialogue(npc){
     dialogue.currentLine = 0;
 
     startDialogue(npc);
-    const line = getCurrentDialogue(0);
 
-    if(line.speaker === "player"){
-        setTypingVoice("player");
+    if(!prepareDialogueLine()){
+        closeDialogue();
     }
-    else if(line.speaker === "npc"){
-        setTypingVoice(npc.id);
-    }
-    else{
-        setTypingVoice("none");
-    }
-
-    startTyping(
-        line.text
-    );
 }
 
 export function nextDialogue(){
+
     if(!isTypingFinished()){
         finishTyping();
         return;
@@ -80,23 +115,9 @@ export function nextDialogue(){
         return;
     }
 
-    changeDialogue(
-        dialogue.currentLine,
-        dialogue.currentNPC
-    );
-    const line = getCurrentDialogue(dialogue.currentLine);
-
-    if(line.speaker === "player"){
-        setTypingVoice("player");
+    if(!prepareDialogueLine()){
+        closeDialogue();
     }
-    else if(line.speaker === "npc"){
-        setTypingVoice(dialogue.currentNPC.id);
-    }
-    else{
-        setTypingVoice("none");
-    }
-
-    startTyping(line.text);
 }
 
 export function closeDialogue(){

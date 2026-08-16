@@ -9,7 +9,6 @@ import {
     setDimmed,
     hasPortrait
 } from "../portrait/portraitManager.js";
-import { executeCommand } from "./dialogueCommand.js";
 
 
 // 현재 출력중인 대사
@@ -19,10 +18,6 @@ let currentDialogue = null;
 // 대사 시작
 export function startDialogue(npc){
     currentDialogue = npc.dialogue;
-    updateDialogueLine(
-        currentDialogue[0],
-        npc
-    );
 }
 
 
@@ -51,11 +46,6 @@ export function endDialogue(){
 // 한 줄 적용
 function updateDialogueLine(data, npc){
     if(!data) return;
-
-    if(data.command){
-        executeCommand(data);
-        return;
-    }
 
     switch(data.speaker){
 
