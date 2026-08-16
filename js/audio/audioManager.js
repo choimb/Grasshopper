@@ -38,9 +38,10 @@ let voiceVolume = 1;
 export async function playBGM(name, transition = "instant"){
     currentBGMName = name;
 
+    // =====================================
+    // Instant
     if(transition === "instant"){
         stopBGM();
-
         currentBGM = new Audio(
             `assets/audio/bgm/${name}.mp3`
         );
@@ -54,42 +55,63 @@ export async function playBGM(name, transition = "instant"){
                 error
             );
         });
-
         return;
     }
 
-    // Fade
-
-    if(currentBGM){
-
-        await fadeAudio(
-            currentBGM,
-            currentBGM.volume / bgmVolume,
-            0,
-            bgmFadeTime
-        );
-
-        currentBGM.pause();
-        currentBGM = null;
-
-    }
-
-    currentBGM = new Audio(
+    // =====================================
+    // Fade / Crossfade
+    const oldBGM = currentBGM;
+    const newBGM = new Audio(
         `assets/audio/bgm/${name}.mp3`
     );
 
-    currentBGM.loop = true;
-    currentBGM.volume = 0;
+    newBGM.loop = true;
+    newBGM.volume = 0;
 
-    await currentBGM.play();
+    // 사용자 입력 직후 재생 시작
+    try{
+        await newBGM.play();
+    }
+    catch(error){
+        console.warn(
+            `BGM 재생 실패: ${name}`,
+            error
+        );
+        return;
+    }
 
-    await fadeAudio(
-        currentBGM,
-        0,
-        1,
-        bgmFadeTime
-    );
+    currentBGM = newBGM;
 
+    if(oldBGM){
+        await Promise.all([
+
+            fadeAudio(
+                oldBGM,
+                oldBGM.volume,
+                0,
+                bgmFadeTime
+            ),
+
+            fadeAudio(
+                newBGM,
+                0,
+                bgmVolume,
+                bgmFadeTime
+            )
+
+        ]);
+
+        oldBGM.pause();
+        oldBGM.currentTime = 0;
+    }
+    else{
+        await fadeAudio(
+            newBGM,
+            0,
+            bgmVolume,
+            bgmFadeTime
+        );
+    }
 }
 
 export function stopBGM(){
@@ -257,7 +279,6 @@ function fadeAudio(audio, from, to, duration){
         }
 
         const start = performance.now();
-
         function update(now){
 
             const t =
@@ -267,8 +288,7 @@ function fadeAudio(audio, from, to, duration){
                 );
 
             audio.volume =
-                (from + (to - from) * t)
-                * bgmVolume;
+                from + (to - from) * t;
 
             if(t < 1){
                 requestAnimationFrame(update);
@@ -276,13 +296,9 @@ function fadeAudio(audio, from, to, duration){
             else{
                 resolve();
             }
-
         }
-
         requestAnimationFrame(update);
-
     });
-
 }
 
 
